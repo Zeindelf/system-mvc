@@ -43,10 +43,10 @@ Config::set('validate', [
 
 		// Assunto
 		'minSubject' => 3,
-		'minSubject' => 100,
+		'maxSubject' => 100,
 
 		// Mensagem
 		'minMessage' => 10,
-		'minMessage' => 1000,
+		'maxMessage' => 1000,
 	],
 ]);

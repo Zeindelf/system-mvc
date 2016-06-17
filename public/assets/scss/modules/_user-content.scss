@@ -1,0 +1,59 @@
+.user {
+	&__change-info,
+	&__info-details {
+		list-style: none;
+		margin: 2em auto 0;
+		font-size: $font-size-medium;
+	}
+
+	&__content {
+		display: flex;
+
+		@media all and (max-width: $break-tablet-portrait) {
+			flex-wrap: wrap;
+		}
+	}
+
+	&__change {
+		flex: 15em 0 0;
+
+		@media all and (max-width: $break-tablet-portrait) {
+			width: 100%;
+			flex-grow: 1;
+		}
+
+		&-info {
+			a {
+				display: block;
+				line-height: 2.2;
+				padding: .5em 1em;
+				background: seagreen;
+				color: $color-base-lighter;
+				border-bottom: 1px solid rgba(#000, .2%);
+
+				@include transition(.3s);
+
+				&:hover {
+					background: darken(seagreen, 10%);
+				}
+			}
+		}
+	}
+
+	&__info {
+		flex-grow: 1;
+
+		@media all and (max-width: $break-tablet-portrait) {
+			width: 100%;
+		}
+
+		&-details {
+			width: 90%;
+		}
+
+		&-field {
+			color: seagreen;
+			font-weight: $font-weight-light;
+		}
+	}
+}

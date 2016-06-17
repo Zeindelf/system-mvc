@@ -1,0 +1,27 @@
+/*
+ * Core
+ */
+@import "variables/variables";
+@import "variables/mixins";
+
+/*
+ * Dependencies
+ */
+@import "core/reset";
+
+/*
+ * Style Geral
+ */
+@import "modules/404";
+@import "modules/base";
+@import "modules/footer";
+@import "modules/header-nav";
+@import "modules/header";
+@import "modules/main-form";
+@import "modules/user-content";
+
+/*
+ * Components
+ */
+@import "components/helpers";
+@import "components/messages";

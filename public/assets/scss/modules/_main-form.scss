@@ -1,0 +1,89 @@
+.form {
+	&__button {
+		margin-top: 2em;
+		display: flex;
+		justify-content: center;
+	}
+
+	&__container {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	&__content {
+		width: 100%;
+		padding: 2em 0;
+
+		label,
+		.forgot > a {
+			font-size: $font-size-medium;
+			color: $text-color-base;
+			margin-bottom: .3em;
+		}
+
+		.forgot > a:hover {
+			color: seagreen;
+		}
+
+		input[type="text"],
+		input[type='password'],
+		input[type="checkbox"] + span:before,
+		textarea {
+			font-size: $font-size-medium;
+			font-family: $font-family-sans-serif;
+			border: 1px solid lighten($color-base-light, 25%);
+			@include border-radius(3px);
+		}
+
+		input[type="text"],
+		input[type='password'],
+		textarea {
+			width: 100%;
+			padding: 0 .5em;
+			line-height: 2;
+			display: block;
+			margin-bottom: .5em;
+			outline: none;
+
+			@include transition(.5s);
+
+			&:focus {
+				@include box-shadow(0 0 3px 0 darken($color-base-light, 15%));
+			}
+		}
+
+		input[type="checkbox"] {
+			display: none;
+
+			+ span:before {
+				content: "";
+				display: inline-block;
+				text-align: center;
+				width: 1em;
+				height: 1em;
+				line-height: 1.2em;
+				margin: -2px 7px 0 0;
+				vertical-align: middle;
+			}
+
+			&:checked {
+				+ span:before {
+					content: "\2714";
+					color: seagreen;
+				}
+			}
+		}
+
+		textarea {
+			padding-top: .5em;
+			padding-bottom: .5em;
+			line-height: 1.2;
+		}
+	}
+
+	&__extra {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

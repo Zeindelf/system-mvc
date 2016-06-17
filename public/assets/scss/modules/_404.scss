@@ -1,0 +1,47 @@
+.not-found {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	&__title {
+		color: seagreen;
+		font-size: 8em;
+		text-align: center;
+		margin-top: .5em;
+	}
+
+	&__content {
+		margin-top: 5em;
+		text-align: center;
+		h2 {
+			font-size: 3.7em;
+			font-weight: $font-weight-light;
+			text-transform: uppercase;
+
+			@media all and (max-width: $break-tablet-portrait) {
+				font-size: 2em;
+			}
+		}
+
+		p,
+		a {
+			font-size: $font-size-medium;
+			color: $color-base-darkest;
+			margin-bottom: .7em;
+
+			@media all and (max-width: $break-tablet-portrait) {
+				font-size: 1em;
+			}
+		}
+
+		a {
+			font-weight: $font-weight-bold;
+
+			&:hover {
+				color: seagreen;
+			}
+		}
+	}
+}

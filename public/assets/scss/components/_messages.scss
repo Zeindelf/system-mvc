@@ -1,0 +1,69 @@
+.alert {
+	width: 100%;
+	font-family: $message-font-family;
+	font-size: $message-font-size;
+
+	padding: $message-padding;
+	margin: $message-margin;
+
+	position: relative;
+
+	@include border-radius(3px);
+
+	&.alert-success,
+	&.alert-success a {
+		color: $success-text;
+	}
+
+	&.alert-success {
+		background-color: $success-bg;
+		border-color: $success-border;
+	}
+
+	&.alert-info,
+	&.alert-info a {
+		color: $info-text;
+	}
+
+	&.alert-info {
+		background-color: $info-bg;
+		border-color: $info-border;
+	}
+
+	&.alert-warning,
+	&.alert-warning a {
+		color: $warning-text;
+	}
+
+
+	&.alert-warning {
+		background-color: $warning-bg;
+		border-color: $warning-border;
+	}
+
+	&.alert-danger,
+	&.alert-danger a {
+		color: $danger-text;
+	}
+
+	&.alert-danger {
+		background-color: $danger-bg;
+		border-color: $danger-border;
+	}
+
+	.alert-close:after {
+		content: "\2716";
+		position: absolute;
+		display: block;
+
+		top: $message-close-padding;
+		right: $message-close-padding;
+		cursor: pointer;
+		font-weight: $font-weight-bold;
+	}
+}
+
+// Mensagens de erro em bloco
+.message-errors {
+	margin: 1em 0 0 1.5em;
+}

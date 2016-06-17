@@ -1,0 +1,1 @@
+<div style="font-family: sans-serif; font-size: 16px; color: #444; max-width: 600px;">

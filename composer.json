@@ -1,0 +1,25 @@
+{
+    "name": "zeindelf/system-mvc",
+    "description": "Sistema simples de usuários utilizando MVC com PHP OO e Smarty Template Engine",
+    "require": {
+        "php": ">=5.5.0",
+        "smarty/smarty": "~3.1",
+        "phpmailer/phpmailer": "^5.2"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wellington Barreto",
+            "email": "zeindelf@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "" : "src/"
+        }
+    }
+}

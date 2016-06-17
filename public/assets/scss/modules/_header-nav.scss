@@ -1,0 +1,52 @@
+.main {
+	&__nav {
+		ul {
+			list-style: none;
+			flex-wrap: wrap;
+			display: flex;
+		}
+
+		li {
+			margin-right: 1em;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		&--button {
+			line-height: 2.2;
+			padding: .5em 1em;
+			background: seagreen;
+			color: $color-base-lighter;
+
+			@include border-radius(3px);
+			@include transition(.3s);
+
+			&:hover {
+				background: darken(seagreen, 10%);
+			}
+		}
+
+		.user-info {
+			display: flex;
+			align-items: center;
+
+			&__username {
+				font-size: $font-size-large;
+				color: lighten(seagreen, 7%);
+				text-align: right;
+				margin-bottom: .3em;
+			}
+
+			a {
+				color: $color-base-lighter;
+				margin-left: 1.5em;
+
+				&:hover {
+					color: lighten(seagreen, 7%);
+				}
+			}
+		}
+	}
+}

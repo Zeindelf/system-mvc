@@ -1,0 +1,4 @@
+/vendor/
+/app/Config.php
+composer.lock
+prepros.cfg

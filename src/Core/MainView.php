@@ -54,10 +54,11 @@ class MainView
 	 *
 	 * @param method 	$template 		Recebe o método do controller
 	 * @param array 	$data 			Envia os dados recebidos para o Smarty
+	 * @param array 	$partials 		Header/Footer personalizado
 	 * @access public
 	 * @return view
 	 */
-	public function __construct($template, array $data = null)
+	public function __construct($template, array $data = null, array $partials = null)
 	{
 		$this->smartyInit();
 		$this->setTplName($template);
@@ -70,9 +71,21 @@ class MainView
 			endforeach;
 		endif;
 
-		$pathPartials = SMARTY_TEMPLATES . DS . 'partials';
-		$mainHeader = $pathPartials . DS . 'geral' . DS . 'main-header.tpl';
-		$mainFooter = $pathPartials . DS . 'geral' . DS . 'main-footer.tpl';
+		$pathPartials = Config::get('smarty.template') . DS . 'partials' . DS . 'geral' . DS;
+
+		if ( !is_null($partials) ):
+			$partialHeader = $pathPartials . $partials[0] . '.tpl';
+			$partialFooter = $pathPartials . $partials[1] . '.tpl';
+
+			$this->view->display($partialHeader);
+			$this->view->display($this->templatePath);
+			$this->view->display($partialFooter);
+
+			return true;
+		endif;
+
+		$mainHeader = $pathPartials . 'main-header.tpl';
+		$mainFooter = $pathPartials . 'main-footer.tpl';
 
 		$this->view->display($mainHeader);
 		$this->view->display($this->templatePath);

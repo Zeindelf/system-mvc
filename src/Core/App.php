@@ -199,6 +199,6 @@ class App
 	{
 		$this->result = false;
 
-		Redirect::to(404);
+		return Redirect::to(404);
 	}
 }

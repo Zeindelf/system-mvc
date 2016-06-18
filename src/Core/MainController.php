@@ -121,11 +121,12 @@ class MainController
 	 * @param array 	$partials 	Header/Footer personalizado
 	 * @return view
 	 */
-	protected function view($template, array $data = null)
+	protected function view($template, array $data = null, array $partials = null)
 	{
 		$arrData = ( $data ?: null );
+		$arrPartials = ( $partials ?: null );
 
-		return $this->view = new MainView($template, $arrData);
+		return $this->view = new MainView($template, $arrData, $arrPartials);
 	}
 
 	/**

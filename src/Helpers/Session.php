@@ -16,6 +16,13 @@ use Helpers\Message;
  */
 class Session
 {
+	/**
+     * Determina se a sessão foi iniciada
+     *
+     * @var boolean
+     */
+    private static $sessionStarted = false;
+
 	//------------------------------------------------------------
 	//	PUBLIC METHODS
 	//------------------------------------------------------------
@@ -28,7 +35,13 @@ class Session
 	 */
 	public static function init()
 	{
-		session_start();
+		if ( !self::$sessionStarted ):
+			if ( !session_id() ):
+				session_start();
+			endif;
+
+			self::$sessionStarted = true;
+		endif;
 	}
 
 	/**
@@ -124,19 +137,16 @@ class Session
 		return null;
 	}
 
-	public static function referer()
-	{
-		return self::set('url_referer', $_SERVER['PHP_SELF']);
-	}
-
 	/**
-	 * Destrói as sessões
+	 * Destrói todas as sessões
 	 *
 	 * @access public
 	 * @return void
 	 */
 	public static function destroy()
 	{
-		session_destroy();
+		if ( self::$sessionStarted ):
+			session_destroy();
+		endif;
 	}
 }

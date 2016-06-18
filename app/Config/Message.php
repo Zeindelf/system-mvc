@@ -59,7 +59,7 @@ Config::set('message', [
 		// Troca
 		'change' => [
 			'invalid' => '<h2>Senha atual inválida!</h2><p>Insira sua senha corretamente.</p>',
-			'success' => '<h2>Parabéns!</h2><p>Sua senha foi trocada com sucesso.</p>',
+			'success' => '<h2>Parabéns!</h2><p>Sua senha foi redifinida com sucesso.</p>',
 		],
 
 		// Recuperação

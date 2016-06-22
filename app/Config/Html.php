@@ -12,6 +12,6 @@ Config::set('html', [
 	'siteName' => SITE_NAME,
 	'siteDesc' => SITE_DESC,
 
-	'csrfToken'   => CSRF_TOKEN,
+	'tokenName'   => CSRF_TOKEN,
 	'tokenExpire' => TOKEN_EXPIRE,
 ]);

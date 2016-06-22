@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-22 15:26:32
+/* Smarty version 3.1.29, created on 2016-06-22 15:36:19
   from "C:\wamp\www\Projects\system-mvc\resources\views\templates\partials\login\form-login.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576ad858afcb86_98779990',
+  'unifunc' => 'content_576adaa3ef8269_28382110',
   'file_dependency' => 
   array (
     'b45bde3784d864babba6a23f4ce71ccd94bbd579' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\resources\\views\\templates\\partials\\login\\form-login.tpl',
-      1 => 1466619460,
+      1 => 1466620577,
       2 => 'file',
     ),
   ),
@@ -19,11 +19,12 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_576ad858afcb86_98779990 ($_smarty_tpl) {
+function content_576adaa3ef8269_28382110 ($_smarty_tpl) {
 $_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
-$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);
-$_smarty_tpl->tpl_vars['token'] = new Smarty_Variable(Helpers\Csrf::generate(), null);
-$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'token', 0);?>
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?>
+
+<?php $_smarty_tpl->tpl_vars['csrfToken'] = new Smarty_Variable(Csrf::generate(), null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'csrfToken', 0);?>
 
 <form action="<?php echo $_smarty_tpl->tpl_vars['baseUrl']->value;?>
 /login/process" method="post">
@@ -43,9 +44,8 @@ echo (($tmp = @$_SESSION['loginData']['userdata'])===null||$tmp==='' ? null : $t
 		</div><!-- /.form__field -->
 
 		<div class="form__field">
-			<input type="hidden" name="<?php echo @constant('CSRF_TOKEN');?>
-" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
-">
+			<?php echo $_smarty_tpl->tpl_vars['csrfToken']->value;?>
+
 		</div><!-- /.form__field -->
 
 		<div class="form__extra">

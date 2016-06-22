@@ -1,8 +1,8 @@
 {assign var=baseUrl value=Config::get('html.baseUrl')}
 
 {if $identifier}
-	{assign var=token value=Helpers\Csrf::generate()}
-	{assign var=referer value=Helpers\Http::referer()}
+	{assign var=token value=Csrf::generate()}
+	{assign var=referer value=Http::referer()}
 
 	<form action="{$baseUrl}/password/reset-process" method="post">
 		<div class="form__content">

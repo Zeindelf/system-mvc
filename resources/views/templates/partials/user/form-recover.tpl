@@ -1,5 +1,6 @@
 {assign var=baseUrl value=Config::get('html.baseUrl')}
-{assign var=token value=Helpers\Csrf::generate()}
+
+{assign var=token value=Csrf::generate()}
 
 <form action="{$baseUrl}/user/recover-process" method="post">
 	<div class="form__content">

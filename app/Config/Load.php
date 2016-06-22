@@ -6,6 +6,7 @@ use Core\Config;
  * Configurações do Carregamento
  */
 Config::set('load', [
+	'aliases',
 	'class',
 	'cookie',
 	'database',

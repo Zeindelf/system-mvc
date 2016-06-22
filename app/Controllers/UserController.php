@@ -4,12 +4,12 @@ namespace App\Controllers;
 
 use Core\Config;
 use Core\MainController;
+use Core\Request;
 
 use Helpers\Auth;
 use Helpers\Csrf;
 use Helpers\Flash;
 use Helpers\Http;
-use Helpers\Request;
 use Helpers\Session;
 
 /**

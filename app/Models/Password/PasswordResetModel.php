@@ -4,9 +4,9 @@ namespace App\Models\Password;
 
 use Core\Config;
 use Core\MainModel;
+use Core\Request;
 
 use Helpers\Hash;
-use Helpers\Request;
 use Helpers\Session;
 use Helpers\Validate;
 

@@ -3,6 +3,7 @@
 use App\Models\LoginModel;
 
 use Core\App;
+use Core\Aliases;
 
 use Helpers\Load;
 use Helpers\Session;
@@ -26,6 +27,11 @@ date_default_timezone_set(DEFAULT_TIMEZONE);
  * Carrega as configurações da classe Config
  */
 $load = new Load;
+
+/**
+ * Aliases de classes helpers para a view
+ */
+Aliases::init();
 
 /**
  * Inicia as sessões

@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Core\Config;
 use Core\MainModel;
+use Core\Request;
 
 use Mail\Mailer;
 
 use Helpers\Hash;
-use Helpers\Request;
 use Helpers\Session;
 use Helpers\Validate;
 

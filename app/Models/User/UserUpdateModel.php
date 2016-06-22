@@ -6,7 +6,6 @@ use Core\Config;
 use Core\MainModel;
 
 use Helpers\Hash;
-use Helpers\Request;
 use Helpers\Session;
 use Helpers\Validate;
 

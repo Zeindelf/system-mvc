@@ -1,6 +1,7 @@
+{assign var=baseUrl value=Config::get('html.baseUrl')}
 {assign var=token value=Helpers\Csrf::generate()}
 
-<form action="{$smarty.const.BASE_URL}/register/process" method="post">
+<form action="{$baseUrl}/register/process" method="post">
 	<div class="form__content">
 
 		<div class="form__field">
@@ -29,7 +30,7 @@
 
 		<div class="form__button">
 			<button class="button" type="submit">Cadastrar</button>
-			<a class="button" href="{$smarty.const.BASE_URL}">Voltar</a>
+			<a class="button" href="{$baseUrl}">Voltar</a>
 		</div><!-- /.form__button -->
 
 	</div><!-- /.form__content -->

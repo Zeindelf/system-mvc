@@ -1,6 +1,7 @@
+{assign var=baseUrl value=Config::get('html.baseUrl')}
 {assign var=token value=Helpers\Csrf::generate()}
 
-<form action="{$smarty.const.BASE_URL}/user/recover-process" method="post">
+<form action="{$baseUrl}/user/recover-process" method="post">
 	<div class="form__content">
 
 		<div class="form__field">

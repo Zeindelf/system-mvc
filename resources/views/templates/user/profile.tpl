@@ -1,3 +1,5 @@
+{assign var=baseUrl value=Config::get('html.baseUrl')}
+
 {include file="partials/user/index-header.tpl"}
 
 	<div class="main__content">
@@ -8,8 +10,8 @@
 			<div class="user__content">
 				<div class="user__change">
 					<ul class="user__change-info">
-						<li><a href="{$smarty.const.BASE_URL}/user/update/{$smarty.session.userSession.username}">Atualizar dados</a></li>
-						<li><a href="{$smarty.const.BASE_URL}/password/change">Mudar senha</a></li>
+						<li><a href="{$baseUrl}/user/update/{$smarty.session.userSession.username}">Atualizar dados</a></li>
+						<li><a href="{$baseUrl}/password/change">Mudar senha</a></li>
 					</ul>
 				</div><!-- /.user__change -->
 

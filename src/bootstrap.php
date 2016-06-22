@@ -51,23 +51,5 @@ $app = new App;
 
 /**
  * Sessões temporárias
- *
- * Deleta a sessão de Flash Message
- * Deleta a sessão de contato via site
- * Deleta a sessão de registro de usuário
- * Deleta a sessão de login de usuário
- * Deleta a sessão de troca de senha do usuário
- * Deleta a sessão de recuperação de senha do usuário
- * Deleta a sessão de redefinição de senha do usuário
- * Deleta a sessão de recuperação da conta do usuário
- * Deleta a sessão de atualização dos dados do usuário
  */
-Session::delete('flash');
-Session::delete('contactData');
-Session::delete('registerData');
-Session::delete('loginData');
-Session::delete('changePasswordData');
-Session::delete('recoverPasswordData');
-Session::delete('resetPasswordData');
-Session::delete('recoverUserData');
-Session::delete('updateUserData');
+Session::tmp();

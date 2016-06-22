@@ -14,7 +14,7 @@
 
 	<p>Ou copie e cole o link abaixo no seu navegador:</p>
 	<p style="font-family: sans-serif; background: #f1f1f1; display: inline; padding: 4px;">
-		{$sbaseUrl}/user/recover/{$data.emailHash}{$data.delimiterHash}{$data.uriHash}
+		{$baseUrl}/user/recover/{$data.emailHash}{$data.delimiterHash}{$data.uriHash}
 	</p>
 
 	<p style="font-size: 15px; color: seagreen; margin-top: 30px;">Os dados de acesso são enviados exclusivamente para seu e-mail. Sendo assim, somente você pode visualizar e acessar.</p>

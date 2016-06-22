@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-16 17:11:07
+/* Smarty version 3.1.29, created on 2016-06-22 16:05:19
   from "C:\wamp\www\Projects\system-mvc\resources\views\templates\error404\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576307db24d322_49631190',
+  'unifunc' => 'content_576ae16f9db677_42565846',
   'file_dependency' => 
   array (
     '790b268c200d0e0648b1906dc17cc2d1406b1ff3' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\resources\\views\\templates\\error404\\index.tpl',
-      1 => 1464822333,
+      1 => 1466620067,
       2 => 'file',
     ),
   ),
@@ -21,8 +21,11 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:partials/index-footer.tpl' => 1,
   ),
 ),false)) {
-function content_576307db24d322_49631190 ($_smarty_tpl) {
-$_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:partials/index-header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+function content_576ae16f9db677_42565846 ($_smarty_tpl) {
+$_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?>
+
+<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:partials/index-header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 
@@ -37,7 +40,7 @@ $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:partials/ind
 					<h2><?php echo $_smarty_tpl->tpl_vars['variables']->value['errorDesc'];?>
 </h2>
 					<p>O link que você tentou acessar pode estar quebrado ou a página pode ter sido removida.</p>
-					<a href="<?php echo @constant('BASE_URL');?>
+					<a href="<?php echo $_smarty_tpl->tpl_vars['baseUrl']->value;?>
 ">Voltar para a página principal</a>
 				</div>
 			</article>

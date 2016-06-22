@@ -1,6 +1,6 @@
 {assign var=baseUrl value=Config::get('html.baseUrl')}
 
-{assign var=token value=Csrf::generate()}
+{assign var=csrfToken value=Csrf::generate()}
 
 <form action="{$baseUrl}/contact/process" method="post">
 	<div class="form__content">
@@ -26,7 +26,7 @@
 		</div><!-- /.form__field -->
 
 		<div class="form__field">
-			<input type="hidden" name="{$smarty.const.CSRF_TOKEN}" value="{$token}">
+			{$csrfToken}
 		</div><!-- /.form__field -->
 
 		<div class="form__button">

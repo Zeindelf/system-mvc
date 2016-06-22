@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-16 17:09:40
+/* Smarty version 3.1.29, created on 2016-06-22 15:55:56
   from "C:\wamp\www\Projects\system-mvc\resources\views\templates\partials\password\form-change.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5763078464a0d6_26230204',
+  'unifunc' => 'content_576adf3cbb12d1_12962188',
   'file_dependency' => 
   array (
     'c46734c193a27459896ec74ee8bef7b03b59dd5f' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\resources\\views\\templates\\partials\\password\\form-change.tpl',
-      1 => 1465605765,
+      1 => 1466621604,
       2 => 'file',
     ),
   ),
@@ -19,13 +19,16 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5763078464a0d6_26230204 ($_smarty_tpl) {
-$_smarty_tpl->tpl_vars['token'] = new Smarty_Variable(Helpers\Csrf::generate(), null);
-$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'token', 0);
-$_smarty_tpl->tpl_vars['referer'] = new Smarty_Variable(Helpers\Http::referer(), null);
+function content_576adf3cbb12d1_12962188 ($_smarty_tpl) {
+$_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?>
+
+<?php $_smarty_tpl->tpl_vars['csrfToken'] = new Smarty_Variable(Csrf::generate(), null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'csrfToken', 0);
+$_smarty_tpl->tpl_vars['referer'] = new Smarty_Variable(Http::referer(), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'referer', 0);?>
 
-<form action="<?php echo @constant('BASE_URL');?>
+<form action="<?php echo $_smarty_tpl->tpl_vars['baseUrl']->value;?>
 /password/change-process" method="post">
 	<div class="form__content">
 
@@ -45,9 +48,8 @@ $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'referer', 0);?>
 		</div><!-- /.form__field -->
 
 		<div class="form__field">
-			<input type="hidden" name="<?php echo @constant('CSRF_TOKEN');?>
-" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
-">
+			<?php echo $_smarty_tpl->tpl_vars['csrfToken']->value;?>
+
 		</div><!-- /.form__field -->
 
 		<div class="form__button">

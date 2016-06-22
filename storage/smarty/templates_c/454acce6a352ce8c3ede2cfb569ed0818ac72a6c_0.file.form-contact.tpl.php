@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-22 15:31:33
+/* Smarty version 3.1.29, created on 2016-06-22 15:55:19
   from "C:\wamp\www\Projects\system-mvc\resources\views\templates\partials\contact\form-contact.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576ad98573aa97_31547288',
+  'unifunc' => 'content_576adf178b3999_96921378',
   'file_dependency' => 
   array (
     '454acce6a352ce8c3ede2cfb569ed0818ac72a6c' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\resources\\views\\templates\\partials\\contact\\form-contact.tpl',
-      1 => 1466620283,
+      1 => 1466621686,
       2 => 'file',
     ),
   ),
@@ -19,12 +19,12 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_576ad98573aa97_31547288 ($_smarty_tpl) {
+function content_576adf178b3999_96921378 ($_smarty_tpl) {
 $_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?>
 
-<?php $_smarty_tpl->tpl_vars['token'] = new Smarty_Variable(Csrf::generate(), null);
-$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'token', 0);?>
+<?php $_smarty_tpl->tpl_vars['csrfToken'] = new Smarty_Variable(Csrf::generate(), null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'csrfToken', 0);?>
 
 <form action="<?php echo $_smarty_tpl->tpl_vars['baseUrl']->value;?>
 /contact/process" method="post">
@@ -55,9 +55,8 @@ $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'token', 0);?>
 		</div><!-- /.form__field -->
 
 		<div class="form__field">
-			<input type="hidden" name="<?php echo @constant('CSRF_TOKEN');?>
-" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
-">
+			<?php echo $_smarty_tpl->tpl_vars['csrfToken']->value;?>
+
 		</div><!-- /.form__field -->
 
 		<div class="form__button">

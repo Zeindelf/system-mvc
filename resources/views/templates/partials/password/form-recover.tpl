@@ -1,6 +1,6 @@
 {assign var=baseUrl value=Config::get('html.baseUrl')}
 
-{assign var=token value=Csrf::generate()}
+{assign var=csrfToken value=Csrf::generate()}
 {assign var=referer value=Http::referer()}
 
 <form action="{$baseUrl}/password/recover-process" method="post">
@@ -12,7 +12,7 @@
 		</div><!-- /.form__field -->
 
 		<div class="form__field">
-			<input type="hidden" name="{$smarty.const.CSRF_TOKEN}" value="{$token}">
+			{$csrfToken}
 		</div><!-- /.form__field -->
 
 		<div class="form__button">

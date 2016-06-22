@@ -63,11 +63,7 @@ class LoginController extends MainController
 
 				return $this->redirect('login');
 			else:
-				if ( $login->checkLogin() ):
-					Flash::success($login->getUserName());
-
-					return $this->redirect();
-				else:
+				if ( !$login->checkLogin() ):
 					$login->attempts();
 
 					$loginAttempts = Config::get('login.attempts') - $login->countAttempts;
@@ -80,18 +76,22 @@ class LoginController extends MainController
 					endif;
 
 					// Bloqueio da conta
-					if ( $login->attempts == Config::get('login.attempts') || $login->attempts() || $loginAttempts == 0 ):
+					if ( $login->attempts == Config::get('login.attempts') || $loginAttempts == 0 ):
 						return $this->redirect('user/block');
 					endif;
 
 					// Contagem de erro de senha
-					if ( $loginAttempts < 3 ):
+					if ( $loginAttempts < 3 && $loginAttempts > 0 ):
 						Flash::danger(Config::message('message.login.warning', $loginAttempts));
 					else:
 						Flash::danger(Config::message('message.login.invalid'));
 					endif;
 
 					return $this->redirect('login');
+				else:
+					Flash::success($login->getUserName());
+
+					return $this->redirect();
 				endif;
 			endif;
 		endif;

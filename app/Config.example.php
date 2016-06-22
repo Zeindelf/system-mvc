@@ -23,7 +23,7 @@ define('BASE_URL', 'http://localhost/Projects/system-mvc');
 define('BASE_CSS', BASE_URL . '/assets/css');
 define('BASE_JS', BASE_URL . '/assets/js');
 define('SITE_NAME', 'System MVC');
-define('SITE_DESC', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+define('SITE_DESC', '');
 
 
 /**
@@ -78,8 +78,8 @@ define('MAIL_USER', '');
 define('MAIL_PASS', '');
 define('MAIL_SECURE', 'tls');
 
-define('MAIL_FROM_ADDRESS', 'no-reply@zeindelf.com');
-define('MAIL_FROM_NAME', 'System MVC');
+define('MAIL_FROM_ADDRESS', '');
+define('MAIL_FROM_NAME', '');
 
 
 /**

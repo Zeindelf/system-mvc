@@ -74,7 +74,7 @@ class ContactModel extends MainModel
 		$message = Session::get('contactData.message');
 
 		$subjectEmail = 'Contato via site';
-		Session::delete('contctData');
+		Session::delete('contactData');
 
 		// Dados para o template do e-mail enviado
 		$data = [

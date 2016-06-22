@@ -14,9 +14,6 @@ Config::set('session', [
 	// Sessões temporárias
 	//------------------------------------------------------------
 	'delete' => [
-		// Sessão de bloqueio de usuário
-		'blockUserData',
-
 		// Sessão de troca de senha do usuário
 		'changePasswordData',
 

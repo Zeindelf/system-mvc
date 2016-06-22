@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-22 15:36:19
+/* Smarty version 3.1.29, created on 2016-06-22 17:07:07
   from "C:\wamp\www\Projects\system-mvc\resources\views\templates\partials\login\form-login.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576adaa3ef8269_28382110',
+  'unifunc' => 'content_576aefeb33b0a5_20713624',
   'file_dependency' => 
   array (
     'b45bde3784d864babba6a23f4ce71ccd94bbd579' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\resources\\views\\templates\\partials\\login\\form-login.tpl',
-      1 => 1466620577,
+      1 => 1466626022,
       2 => 'file',
     ),
   ),
@@ -19,12 +19,17 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_576adaa3ef8269_28382110 ($_smarty_tpl) {
+function content_576aefeb33b0a5_20713624 ($_smarty_tpl) {
 $_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?>
 
 <?php $_smarty_tpl->tpl_vars['csrfToken'] = new Smarty_Variable(Csrf::generate(), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'csrfToken', 0);?>
+
+<?php $_smarty_tpl->tpl_vars['username'] = new Smarty_Variable(Session::get('registerData.username'), null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'username', 0);
+$_smarty_tpl->tpl_vars['userdata'] = new Smarty_Variable(Session::get('loginData.userdata'), null);
+$_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'userdata', 0);?>
 
 <form action="<?php echo $_smarty_tpl->tpl_vars['baseUrl']->value;?>
 /login/process" method="post">
@@ -33,8 +38,8 @@ $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'csrfToken', 0);?>
 		<div class="form__field">
 			<label for="userdata">Nome de Usuário ou E-mail</label>
 			<input type="text" name="userdata" id="userdata"
-				value="<?php echo (($tmp = @$_SESSION['registerData']['username'])===null||$tmp==='' ? null : $tmp);
-echo (($tmp = @$_SESSION['loginData']['userdata'])===null||$tmp==='' ? null : $tmp);?>
+				value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['username']->value)===null||$tmp==='' ? null : $tmp);
+echo (($tmp = @$_smarty_tpl->tpl_vars['userdata']->value)===null||$tmp==='' ? null : $tmp);?>
 ">
 		</div><!-- /.form__field -->
 

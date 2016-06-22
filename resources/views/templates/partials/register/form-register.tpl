@@ -2,17 +2,20 @@
 
 {assign var=csrfToken value=Csrf::generate()}
 
+{assign var=username value=Session::get('registerData.username')}
+{assign var=email value=Session::get('registerData.email')}
+
 <form action="{$baseUrl}/register/process" method="post">
 	<div class="form__content">
 
 		<div class="form__field">
 			<label for="username">Usuário</label>
-			<input type="text" name="username" id="username" value="{$smarty.session.registerData.username|default:null}">
+			<input type="text" name="username" id="username" value="{$username|default:null}">
 		</div><!-- /.form__field -->
 
 		<div class="form__field">
 			<label for="email">E-mail</label>
-			<input type="text" name="email" id="email" value="{$smarty.session.registerData.email|default:null}">
+			<input type="text" name="email" id="email" value="{$email|default:null}">
 		</div><!-- /.form__field -->
 
 		<div class="form__field">

@@ -1,8 +1,10 @@
+{assign var=baseUrl value=Config::get('html.baseUrl')}
+
 {if $identifier}
 	{assign var=token value=Helpers\Csrf::generate()}
 	{assign var=referer value=Helpers\Http::referer()}
 
-	<form action="{$smarty.const.BASE_URL}/password/reset-process" method="post">
+	<form action="{$baseUrl}/password/reset-process" method="post">
 		<div class="form__content">
 
 			<div class="form__field">
@@ -30,6 +32,6 @@
 	<div class="alert alert-info">
 		<p>Desculpe, mas não foi possível acessar qualquer cadastro com o código de recuperação informado. Talvez ele já tenha sido usado ou expirado.</p>
 
-		<p>Caso deseje, você pode solicitar outro código <a href="{$smarty.const.BASE_URL}/password/recover"><b>Clicando Aqui!</b></a></p>
+		<p>Caso deseje, você pode solicitar outro código <a href="{$baseUrl}/password/recover"><b>Clicando Aqui!</b></a></p>
 	</div>
 {/if}

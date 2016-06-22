@@ -1,7 +1,7 @@
+{assign var=baseUrl value=Config::get('html.baseUrl')}
 {assign var=token value=Helpers\Csrf::generate()}
 
-{*<form action="{$smarty.const.BASE_URL}/login/process" method="post">*}
-<form action="{$smarty.const.BASE_URL}/login/process" method="post">
+<form action="{$baseUrl}/login/process" method="post">
 	<div class="form__content">
 
 		<div class="form__field">
@@ -26,13 +26,13 @@
 			</label>
 
 			<div class="forgot">
-				<a href="{$smarty.const.BASE_URL}/password/recover">Esqueci minha senha</a>
+				<a href="{$baseUrl}/password/recover">Esqueci minha senha</a>
 			</div><!-- /.forgot -->
 		</div><!-- /.form__extra -->
 
 		<div class="form__button">
 			<button class="button" type="submit">Entrar</button>
-			<a class="button" href="{$smarty.const.BASE_URL}">Voltar</a>
+			<a class="button" href="{$baseUrl}">Voltar</a>
 		</div><!-- /.form__button -->
 
 	</div><!-- /.form__content -->

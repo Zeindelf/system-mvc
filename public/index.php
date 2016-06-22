@@ -32,5 +32,3 @@ endif;
  * Inicializa toda a aplicação
  */
 require_once SRC_DIR . DS . 'bootstrap.php';
-
-var_dump($_SESSION);

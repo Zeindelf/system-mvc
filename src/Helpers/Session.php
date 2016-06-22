@@ -139,6 +139,13 @@ class Session
 		return null;
 	}
 
+	/**
+	 * Deleta sessões temporárias (formulários, flash, etc.)
+	 * Para registrar uma nova sessão, adicione-a em /app/Config/Session no array 'delete'
+	 *
+	 * @access public
+	 * @return mix
+	 */
 	public static function tmp()
 	{
 		$sessionTmp = Config::get('session.delete');

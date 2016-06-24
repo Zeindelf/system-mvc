@@ -20,6 +20,11 @@ class RegisterModel extends MainModel
 	//	PROPERTIES
 	//------------------------------------------------------------
 
+	/**
+	 * Armazena dados do usuário contidos em uma sessão temporária
+	 *
+	 * @var array
+	 */
 	private $userData = [];
 
 	/**
@@ -95,6 +100,11 @@ class RegisterModel extends MainModel
 		return false;
 	}
 
+	/**
+	 * Envia um e-mail pro usuário confirmando seu cadastro
+	 *
+	 * @return boolean
+	 */
 	public function sendEmail()
 	{
 		$username = $this->userData['username'];

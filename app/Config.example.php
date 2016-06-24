@@ -28,6 +28,7 @@ define('SITE_DESC', '');
 
 /**
  * Define a chave de criptografia para Cookies e recuperação de senha
+ * Informe uma string qualquer (quanto mais caracteres aleatórios, melhor)
  */
 define('ENCRYPT_KEY', 'zeindelf');
 
@@ -79,7 +80,7 @@ define('MAIL_PASS', '');
 define('MAIL_SECURE', 'tls');
 
 define('MAIL_FROM_ADDRESS', '');
-define('MAIL_FROM_NAME', '');
+define('MAIL_FROM_NAME', SITE_NAME);
 
 
 /**
@@ -108,8 +109,8 @@ define('SMARTY_PATH', ROOT_DIR . DS . 'storage' . DS . 'smarty' );
 define('SMARTY_CONFIG', APP_DIR . DS . 'Config.php');
 define('SMARTY_CACHE', SMARTY_PATH . DS . 'cache');
 define('SMARTY_COMPILE', SMARTY_PATH . DS . 'templates_c');
-define('SMARTY_TEMPLATES', ROOT_DIR . DS . 'resources' . DS . 'views' . DS . 'templates');
-define('SMARTY_EMAIL', ROOT_DIR . DS . 'resources' . DS . 'views' . DS . 'templates' . DS . 'email' . DS);
+define('SMARTY_TEMPLATES', SMARTY_PATH . DS . 'templates');
+define('SMARTY_EMAIL', SMARTY_TEMPLATES . DS . 'email' . DS);
 
 
 /**

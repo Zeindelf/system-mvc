@@ -63,15 +63,15 @@ class RegisterController extends MainController
 
 				return $this->redirect('register');
 			else:
-				if ( $register->create() ):
+				if ( !$register->create() ):
+					Flash::danger(Config::message('message.system.error'));
+
+					return $this->redirect('register');
+				else:
 					$register->sendEmail();
 					Flash::success(Config::message('message.register.success'));
 
 					return $this->redirect('login');
-				else:
-					Flash::danger(Config::message('message.system.error'));
-
-					return $this->redirect('register');
 				endif;
 			endif;
 		endif;

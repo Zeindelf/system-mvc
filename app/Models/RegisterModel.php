@@ -5,6 +5,8 @@ namespace App\Models;
 use Core\Config;
 use Core\MainModel;
 
+use Mail\Mailer;
+
 use Helpers\Hash;
 use Helpers\Session;
 use Helpers\Validate;
@@ -17,6 +19,8 @@ class RegisterModel extends MainModel
 	//------------------------------------------------------------
 	//	PROPERTIES
 	//------------------------------------------------------------
+
+	private $userData = [];
 
 	/**
 	 * Dados que serão enviados para o Controller abastecer a View
@@ -44,6 +48,13 @@ class RegisterModel extends MainModel
 	//	PUBLIC METHODS
 	//------------------------------------------------------------
 
+	public function __construct()
+	{
+		$this->userData['username'] = Session::get('registerData.username');
+		$this->userData['email'] = Session::get('registerData.email');
+		$this->userData['password'] = Session::get('registerData.password');
+	}
+
 	/**
 	 * Obtém os dados tratados
 	 *
@@ -64,20 +75,40 @@ class RegisterModel extends MainModel
 	 */
 	public function create()
 	{
-		$username = strtolower(Session::get('registerData.username'));
-		$email = strtolower(Session::get('registerData.email'));
-		$password = Hash::set(Session::get('registerData.password'));
+		$this->userData['username'] = strtolower($this->userData['username']);
+		$this->userData['email'] = strtolower($this->userData['email']);
+		$this->userData['password'] = Hash::set($this->userData['password']);
 
 		$data = [
-			'username' => $username,
-			'email' => $email,
-			'password' => $password
+			'username' => $this->userData['username'],
+			'email' => $this->userData['email'],
+			'password' => $this->userData['password']
 		];
 
 		$createUser = $this->newCreate();
 		$createUser->executeCreate('users', $data);
 
 		if ( $createUser->getResult() ):
+			return true;
+		endif;
+
+		return false;
+	}
+
+	public function sendEmail()
+	{
+		$username = $this->userData['username'];
+		$email = $this->userData['email'];
+		$subject = 'Obrigado por se registrar!';
+
+		$data = [
+			'username' => $username,
+		];
+
+		$mailer = new Mailer;
+		$mailer->from();
+
+		if ( $mailer->send('success-register', $email, $subject, $data) ):
 			return true;
 		endif;
 

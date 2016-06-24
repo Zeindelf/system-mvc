@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-24 00:55:29
+/* Smarty version 3.1.29, created on 2016-06-24 19:32:58
   from "C:\wamp\www\Projects\system-mvc\storage\smarty\templates\partials\index-header.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576caf31409f89_24513799',
+  'unifunc' => 'content_576db51a92b890_75925402',
   'file_dependency' => 
   array (
     '5038f6a39b7fb447428776ff4bd6fb9ec2e89d4b' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\storage\\smarty\\templates\\partials\\index-header.tpl',
-      1 => 1466740527,
+      1 => 1466807550,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:partials/index-nav.tpl' => 1,
   ),
 ),false)) {
-function content_576caf31409f89_24513799 ($_smarty_tpl) {
+function content_576db51a92b890_75925402 ($_smarty_tpl) {
 $_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?> <?php $_smarty_tpl->tpl_vars['siteName'] = new Smarty_Variable(Config::get('html.siteName'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'siteName', 0);?><div class="main__header"><header class="container header__container"><div class="header__title"><a title="<?php echo $_smarty_tpl->tpl_vars['siteName']->value;?>

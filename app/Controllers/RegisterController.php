@@ -64,6 +64,7 @@ class RegisterController extends MainController
 				return $this->redirect('register');
 			else:
 				if ( $register->create() ):
+					$register->sendEmail();
 					Flash::success(Config::message('message.register.success'));
 
 					return $this->redirect('login');

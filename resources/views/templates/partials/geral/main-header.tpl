@@ -23,7 +23,7 @@
 		<meta name="robots" content="index, follow"/>
 
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="{$baseCss}/style.css">
+		<link rel="stylesheet" href="{$baseCss}/app.css">
 	</head>
 
 	<body>

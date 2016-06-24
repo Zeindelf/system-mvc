@@ -1,0 +1,24 @@
+{
+  "name": "system-mvc",
+  "version": "1.0.0",
+  "description": "Sistema simples de usuários utilizando MVC com PHP OO e Smarty Template Engine",
+  "main": "index.js",
+  "authors": [
+    "Wellington Barreto <zeindelf@hotmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zeindelf/system-mvc#readme",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flex-grid-framework": "^1.3.0",
+    "jquery": "2.2.4",
+    "jquery.maskedinput": "^1.4.1"
+  }
+}

@@ -3,7 +3,7 @@
 <div class="main__footer">
 	<div class="container">
 
-		<p>{$siteName} Footer &copy {$smarty.now|date_format: "%Y"}</p>
+		<p>{$siteName} Footer &copy; {$smarty.now|date_format: "%Y"}</p>
 
 	</div><!-- /.container -->
 </div><!-- /.main__footer -->

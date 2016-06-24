@@ -2,12 +2,22 @@
 
 Utilizando como base a estrutura básica montada aqui: [Simple MVC](https://github.com/Zeindelf/simple-mvc)
 
+## Demo
+
+Um demo online pode ser acessado clicando aqui: [System MVC](http://system.zeindelf.com/)
+
 # Configurações
 
-#### Requerimentos
+#### Requerimentos (realize-os na sequência)
 
 * Todos listados no [Simple MVC](https://github.com/Zeindelf/simple-mvc)
-* Banco de Dados contido em: `/misc/database/system_mvc.sql`
+* Instalar o Banco de Dados contido em: `/misc/database/system_mvc.sql`
+* Ter instalado o [Bower](https://bower.io/)
+	* Rodar o comando `$ bower install`
+* Ter instalado o [NodeJS](https://nodejs.org/en/)
+	* Rodar o comando `$ npm install`
+* Ter instalado o [Gulp](http://gulpjs.com/)
+	* Compilar os arquivos com o comando `$ gulp`
 
 # Conteúdo
 

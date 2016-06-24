@@ -1,4 +1,9 @@
+/bower_components/
+/node_modules/
+/public/assets/
+/storage/smarty/templates/
 /vendor/
+
 /app/Config.php
 composer.lock
 prepros.cfg

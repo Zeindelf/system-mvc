@@ -18,7 +18,7 @@ gulp.task('clean', function() {
 /**
  * Minifica e concatena arquivos Javascript
  */
-gulp.task('uglify', function() {
+gulp.task('jsMin', function() {
 	return gulp.src([
 		'./bower_components/jquery/dist/jquery.js',
 		'./bower_components/jquery.maskedinput/dist/jquery.maskedinput.js',
@@ -45,7 +45,7 @@ gulp.task('htmlMin', function() {
 /**
  * Compila os arquivos SASS
  */
-gulp.task('sass', function () {
+gulp.task('cssMin', function () {
 	return gulp.src('./resources/assets/scss/*.scss')
 	.pipe(sass({
 		outputStyle: 'compressed'
@@ -56,16 +56,48 @@ gulp.task('sass', function () {
 	.pipe(gulp.dest('./public/assets/css'));
 });
 
+
+//------------------------------------------------------------
+// Watches
+//------------------------------------------------------------
+
 /**
- * Aciona o modo watch
+ * SASS Watch
  */
-gulp.task('watch', function() {
-	return gulp.watch('./resources/assets/scss/**/*.scss', ['sass']);
+gulp.task('watchCss', function() {
+	return gulp.watch('./resources/assets/scss/**/*.scss', ['cssMin']);
 });
+
+/**
+ * JS Watch
+ */
+gulp.task('watchJs', function() {
+	return gulp.watch('./resources/assets/js/*.js', ['jsMin']);
+});
+
+/**
+ * HTML Watch
+ */
+gulp.task('watchHtml', function() {
+	return gulp.watch('./resources/views/templates/**/*.tpl', ['htmlMin']);
+});
+
+
+//------------------------------------------------------------
+// Multi tasks
+//------------------------------------------------------------
 
 /**
  * Roda todas as tasks principais
  */
 gulp.task('default', function(callback) {
-	return runSequence('clean', ['sass', 'uglify', 'htmlMin'], callback);
+	return runSequence('clean', ['cssMin', 'jsMin', 'htmlMin'], callback);
 });
+
+/**
+ * Watch tasks
+ */
+gulp.task('watchCssJs', ['watchCss', 'watchJs']);
+gulp.task('watchCssHtml', ['watchCss', 'watchHtml']);
+gulp.task('watchJsHtml', ['watchJs', 'watchHtml']);
+gulp.task('watchAll', ['watchCss', 'watchJs', 'watchHtml']);

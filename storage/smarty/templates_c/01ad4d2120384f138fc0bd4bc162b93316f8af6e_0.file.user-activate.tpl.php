@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-25 15:54:30
+/* Smarty version 3.1.29, created on 2016-06-25 19:17:42
   from "C:\wamp\www\Projects\system-mvc\storage\smarty\templates\email\user-activate.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576ed3663f2b64_15038773',
+  'unifunc' => 'content_576f0306bae855_48428642',
   'file_dependency' => 
   array (
     '01ad4d2120384f138fc0bd4bc162b93316f8af6e' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\storage\\smarty\\templates\\email\\user-activate.tpl',
-      1 => 1466880834,
+      1 => 1466884503,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:email/partials/style-end.tpl' => 1,
   ),
 ),false)) {
-function content_576ed3663f2b64_15038773 ($_smarty_tpl) {
+function content_576f0306bae855_48428642 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'C:\\wamp\\www\\Projects\\system-mvc\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.capitalize.php';
 $_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?> <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:email/partials/style-start.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

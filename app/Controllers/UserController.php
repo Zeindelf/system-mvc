@@ -93,6 +93,8 @@ class UserController extends MainController
 			if ( $activateUser->getIdentifier($getUri[2]) ):
 				Flash::success(Config::message('message.user.account.active'));
 
+				Session::delete('activateId');
+
 				$this->redirect('login');
 			endif;
 		endif;

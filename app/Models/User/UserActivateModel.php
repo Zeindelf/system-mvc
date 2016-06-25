@@ -120,7 +120,6 @@ class UserActivateModel extends MainModel
 	private function setUser()
 	{
 		$userId = Session::get('activateId');
-		Session::delete('activateId');
 
 		$readUser = $this->newRead();
 		$readUser->executeRead('users', 'WHERE id = :id', "id={$userId}");

@@ -43,7 +43,9 @@ Config::set('message', [
 	// Boas-vindas
 	//------------------------------------------------------------
 	'welcome' => [
-		'nameless' => '<h2>Logado com sucesso!</h2><br><p>Seja bem vindo(a), <b>%1%</b>.</p><p>Atualize os seus dados!</p><p>Ir para a <a href="%2%"><b>Meu Profile</b></a>!</p>',
+		'nameless' => '<h2>Logado com sucesso!</h2><br><p>Seja bem vindo(a), <b>%1%</b>.</p>
+						<p>Não esqueça de atualizar os seus dados na sua área de profile.</p><br>
+						<h3>&#8618; <a href="%2%">Acessar Meu Profile</a></h3>',
 		'fullname' => '<h2>Logado com sucesso!</h2><br><p>Seja bem vindo(a) <b>%1% %2%</b>.</p>',
 	],
 
@@ -94,6 +96,8 @@ Config::set('message', [
 						<p><b><a href="%1%">Clique aqui</a></b> para solicitar um novo link de ativação.</p>',
 			'active' => '<h2>Parabéns!</h2><p>Sua conta foi ativada com sucesso.</p><p>Por favor, efetue o login.</p>',
 			'email' => '<h2>Sucesso!</h2><p>Um novo e-mail para ativação da conta foi enviado para o endereço cadastrado.</p>',
+			'invalid' => '<h2>Oppsss!</h2><p>Sua conta já está ativa ou o link expirou.</p>
+						<p>Caso não tenha ativado sua conta ainda, tente realizar o login abaixo para gerar um novo link para ativação da conta.</p>',
 		],
 
 		// Bloqueio da conta

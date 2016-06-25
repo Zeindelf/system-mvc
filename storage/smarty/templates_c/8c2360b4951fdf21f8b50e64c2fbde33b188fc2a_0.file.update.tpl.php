@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-25 16:44:34
+/* Smarty version 3.1.29, created on 2016-06-25 19:49:36
   from "C:\wamp\www\Projects\system-mvc\storage\smarty\templates\user\update.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576edf220a56d8_77217706',
+  'unifunc' => 'content_576f0a80b982a7_66926888',
   'file_dependency' => 
   array (
     '8c2360b4951fdf21f8b50e64c2fbde33b188fc2a' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\storage\\smarty\\templates\\user\\update.tpl',
-      1 => 1466880834,
+      1 => 1466884503,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:partials/index-footer.tpl' => 1,
   ),
 ),false)) {
-function content_576edf220a56d8_77217706 ($_smarty_tpl) {
+function content_576f0a80b982a7_66926888 ($_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:partials/user/index-header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="main__content"><div class="container"><h1 class="main__title"><?php echo $_smarty_tpl->tpl_vars['variables']->value['indexTitle'];?>

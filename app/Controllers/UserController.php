@@ -95,11 +95,12 @@ class UserController extends MainController
 
 				Session::delete('activateId');
 
-				$this->redirect('login');
+				return $this->redirect('login');
 			endif;
 		endif;
 
-		return $this->redirect(404);
+		Flash::warning(Config::get('message.user.account.invalid'));
+		return $this->redirect('login');
 	}
 
 	/**

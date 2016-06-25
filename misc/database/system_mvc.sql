@@ -36,6 +36,8 @@ CREATE TABLE `users` (
   `recover_hash` varchar(64) DEFAULT NULL,
   `remember_identifier` varchar(128) DEFAULT NULL,
   `remember_token` varchar(60) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT NULL,
+  `active_hash` varchar(128) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

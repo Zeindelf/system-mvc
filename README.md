@@ -22,6 +22,7 @@ Um demo online pode ser acessado clicando aqui: [System MVC](http://system.zeind
 # Conteúdo
 
 * Cadastro de usuário
+* Ativação da conta via e-mail (desativado por padrão)
 * Login no sistema
 * Bloqueio da conta após **x** tentativas falhas de login
 * Desbloqueio da conta via e-mail

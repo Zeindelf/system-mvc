@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-23 22:53:50
+/* Smarty version 3.1.29, created on 2016-06-25 01:39:23
   from "C:\wamp\www\Projects\system-mvc\storage\smarty\templates\email\password-recover.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576c92aeb2b611_57938168',
+  'unifunc' => 'content_576e0afb4315b8_54121019',
   'file_dependency' => 
   array (
     '72b9cf285e883035789b00d4409af988a0efad51' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\storage\\smarty\\templates\\email\\password-recover.tpl',
-      1 => 1466730066,
+      1 => 1466808333,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:email/partials/style-end.tpl' => 1,
   ),
 ),false)) {
-function content_576c92aeb2b611_57938168 ($_smarty_tpl) {
+function content_576e0afb4315b8_54121019 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'C:\\wamp\\www\\Projects\\system-mvc\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.capitalize.php';
 $_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?> <?php $_smarty_tpl->tpl_vars['tokenExpire'] = new Smarty_Variable(Config::get('html.tokenExpire'), null);

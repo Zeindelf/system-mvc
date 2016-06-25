@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-24 20:15:12
+/* Smarty version 3.1.29, created on 2016-06-25 15:54:28
   from "C:\wamp\www\Projects\system-mvc\storage\smarty\templates\partials\login\form-login.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576dbf00389af9_01728935',
+  'unifunc' => 'content_576ed3649215d5_45136997',
   'file_dependency' => 
   array (
     '4f5a116d08646825c69eec42dc76f0399b5014fd' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\storage\\smarty\\templates\\partials\\login\\form-login.tpl',
-      1 => 1466808334,
+      1 => 1466880834,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_576dbf00389af9_01728935 ($_smarty_tpl) {
+function content_576ed3649215d5_45136997 ($_smarty_tpl) {
 $_smarty_tpl->tpl_vars['baseUrl'] = new Smarty_Variable(Config::get('html.baseUrl'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'baseUrl', 0);?> <?php $_smarty_tpl->tpl_vars['csrfToken'] = new Smarty_Variable(Csrf::generate(), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'csrfToken', 0);?> <?php $_smarty_tpl->tpl_vars['username'] = new Smarty_Variable(Session::get('registerData.username'), null);

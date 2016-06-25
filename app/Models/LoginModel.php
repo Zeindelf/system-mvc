@@ -132,6 +132,10 @@ class LoginModel extends MainModel
 				);
 			endif;
 
+			if ( Config::get('user.activeAcc') ):
+				Session::set('activateId', $userId);
+			endif;
+
 			return true;
 		endif;
 

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-24 20:15:07
+/* Smarty version 3.1.29, created on 2016-06-25 15:54:30
   from "C:\wamp\www\Projects\system-mvc\storage\smarty\templates\email\partials\signature.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576dbefb4a3f58_20252969',
+  'unifunc' => 'content_576ed3664ad5f9_24006292',
   'file_dependency' => 
   array (
     'caf86465bda6504eb5dc51bfaf7061edd72ba405' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\storage\\smarty\\templates\\email\\partials\\signature.tpl',
-      1 => 1466808334,
+      1 => 1466880834,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_576dbefb4a3f58_20252969 ($_smarty_tpl) {
+function content_576ed3664ad5f9_24006292 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\wamp\\www\\Projects\\system-mvc\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.date_format.php';
 $_smarty_tpl->tpl_vars['siteName'] = new Smarty_Variable(Config::get('html.siteName'), null);
 $_smarty_tpl->ext->_updateScope->updateScope($_smarty_tpl, 'siteName', 0);?><hr><p style="font-size: 14px; color: #999">Enviada por: <b><?php echo $_smarty_tpl->tpl_vars['siteName']->value;?>

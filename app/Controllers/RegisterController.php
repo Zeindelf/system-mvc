@@ -68,14 +68,16 @@ class RegisterController extends MainController
 
 					return $this->redirect('register');
 				else:
-					// Processar a mensagem que fornecerá o link para ativação da conta
-					// Redirecionar para user/activate (?)
 					if ( Config::get('user.activeAcc') ):
-						return print_r('Ativar');
-					endif;
+						$activate = $this->model('UserActivate', 'User');
+						$activate->sendEmail();
 
-					$register->sendEmail();
-					Flash::success(Config::message('message.register.success'));
+						$link = Config::get('html.baseUrl') . '/user/activate';
+						Flash::warning(Config::message('message.register.activate', $link));
+					else:
+						$register->sendEmail();
+						Flash::success(Config::message('message.register.success'));
+					endif;
 
 					return $this->redirect('login');
 				endif;

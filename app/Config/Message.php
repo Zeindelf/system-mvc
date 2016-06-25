@@ -50,7 +50,7 @@ Config::set('message', [
 	//------------------------------------------------------------
 	// Logout
 	//------------------------------------------------------------
-	'logout' => '<p>Você foi deslogado!</p>',
+	'logout' => '<h2>Sucesso!</h2><p>Sua sessão foi encerrada.</p>',
 
 	//------------------------------------------------------------
 	// Senhas
@@ -78,6 +78,9 @@ Config::set('message', [
 	// Cadastro
 	//------------------------------------------------------------
 	'register' => [
+		'activate' => '<h2>Parabéns!</h2><p>Seu cadastrado foi efetuado com sucesso.</p>
+						<p>Ative sua conta clicando no link que foi enviado no seu e-mail cadastrado.</p>
+						<p>Caso não tenha recebido nenhum e-mail, você pode solicitar outro <b><a href="%1%">clicando aqui</a></b></p>',
 		'success' => '<h2>Parabéns!</h2><p>Cadastrado efetuado com sucesso.</p><p>Por favor, efetue o login.</p>',
 	],
 
@@ -89,7 +92,8 @@ Config::set('message', [
 		'account' => [
 			'inactive' => '<h2>Conta não ativada!</h2><p>Por favor, ative sua conta para poder efetuar login no sistema.</p>
 						<p><b><a href="%1%">Clique aqui</a></b> para solicitar um novo link de ativação.</p>',
-			'active' => '',
+			'active' => '<h2>Parabéns!</h2><p>Sua conta foi ativada com sucesso.</p><p>Por favor, efetue o login.</p>',
+			'email' => '<h2>Sucesso!</h2><p>Um novo e-mail para ativação da conta foi enviado para o endereço cadastrado.</p>',
 		],
 
 		// Bloqueio da conta

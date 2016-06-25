@@ -94,6 +94,10 @@ class RegisterUserModel extends MainModel
 		$createUser->executeCreate('users', $data);
 
 		if ( $createUser->getResult() ):
+			if ( Config::get('user.activeAcc') ):
+				Session::set('activateId', $createUser->getResult());
+			endif;
+
 			return true;
 		endif;
 

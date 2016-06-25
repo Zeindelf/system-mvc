@@ -61,7 +61,43 @@ class UserController extends MainController
 	 */
 	public function activateAction()
 	{
-		echo 'Envia o e-mail';
+		if ( Http::checkReferer('register') || Http::checkReferer('login') ):
+			$activate = $this->model('UserActivate', 'User');
+
+			if ( $activate->sendEmail() ):
+				Flash::success(Config::get('message.user.account.email'));
+			else:
+				Flash::danger(Config::message('message.system.error'));
+			endif;
+
+			return $this->redirect('login');
+		endif;
+
+		return $this->redirect(404);
+	}
+
+	/**
+	 * Ativa a conta do usuário
+	 *
+	 * @param string 	$identifier 	Identificador da conta inativa
+	 * @return void
+	 */
+	public function activateProcessAction($identifier = null)
+	{
+		if ( !is_null($identifier) ):
+			$activateUser = $this->model('UserActivate', 'User');
+
+			$getUri = Request::get('uri');
+			$getUri = explode('/', $getUri);
+
+			if ( $activateUser->getIdentifier($getUri[2]) ):
+				Flash::success(Config::message('message.user.account.active'));
+
+				$this->redirect('login');
+			endif;
+		endif;
+
+		return $this->redirect(404);
 	}
 
 	/**

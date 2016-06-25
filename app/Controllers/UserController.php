@@ -55,6 +55,16 @@ class UserController extends MainController
 	}
 
 	/**
+	 * Processa o envio do e-mail para o usuário desbloquear a conta
+	 *
+	 * @return boolean
+	 */
+	public function activateAction()
+	{
+		echo 'Envia o e-mail';
+	}
+
+	/**
 	 * Página de usuário bloqueado
 	 *
 	 * @return void

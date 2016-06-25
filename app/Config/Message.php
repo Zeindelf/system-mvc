@@ -85,6 +85,13 @@ Config::set('message', [
 	// Usuário
 	//------------------------------------------------------------
 	'user' => [
+		// Conta ativada/desativada
+		'account' => [
+			'inactive' => '<h2>Conta não ativada!</h2><p>Por favor, ative sua conta para poder efetuar login no sistema.</p>
+						<p><b><a href="%1%">Clique aqui</a></b> para solicitar um novo link de ativação.</p>',
+			'active' => '',
+		],
+
 		// Bloqueio da conta
 		'block' => '<h2>Erro ao logar</h2><p>Sua conta foi bloqueada pois excedeu a quantidade máxima de tentativas de login.</p>
 					<p><b><a href="%1%">Clique aqui</a></b> para receber um e-mail com as instruções para recuperar sua conta.</p>',

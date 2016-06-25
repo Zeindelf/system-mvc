@@ -47,6 +47,13 @@ define('TOKEN_EXPIRE', 60 * 4);
 
 
 /**
+ * Define se o usuário precisa ativar sua conta via e-mail após o registro
+ * Altere o valor para true para que o usuário receba um e-mail para ativar a conta
+ */
+define('ACTIVE_ACC', false);
+
+
+/**
  * Configuração de conexão ao Banco de Dados
  *
  * DB_TYPE: Database utilizado - MySQL por padrão

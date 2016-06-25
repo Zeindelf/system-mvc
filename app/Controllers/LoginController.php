@@ -89,6 +89,17 @@ class LoginController extends MainController
 
 					return $this->redirect('login');
 				else:
+					if ( Config::get('user.activeAcc') ):
+						// Conta ativa
+						if ( $login->activeVerify() ):
+							Flash::success($login->getUserName());
+
+							return $this->redirect();
+						else:
+							return $this->redirect('logout');
+						endif;
+					endif;
+
 					Flash::success($login->getUserName());
 
 					return $this->redirect();

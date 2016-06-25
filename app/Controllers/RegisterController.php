@@ -32,7 +32,7 @@ class RegisterController extends MainController
 			return false;
 		endif;
 
-		$register = $this->model('Register');
+		$register = $this->model('RegisterUser', 'Register');
 
 		return $this->view($this->getTemplate(), $register->getData());
 	}
@@ -53,7 +53,7 @@ class RegisterController extends MainController
 		$verifyToken = Csrf::check('registerData', 'register');
 
 		if ( $verifyToken ):
-			$register = $this->model('Register');
+			$register = $this->model('RegisterUser', 'Register');
 
 			$errors = $register->getData()['validate'];
 
@@ -68,6 +68,12 @@ class RegisterController extends MainController
 
 					return $this->redirect('register');
 				else:
+					// Processar a mensagem que fornecerá o link para ativação da conta
+					// Redirecionar para user/activate (?)
+					if ( Config::get('user.activeAcc') ):
+						return print_r('Ativar');
+					endif;
+
 					$register->sendEmail();
 					Flash::success(Config::message('message.register.success'));
 

@@ -32,6 +32,8 @@ class LogoutController extends MainController
 	 */
 	private $sessionUserId;
 
+	private $sessionUserActive;
+
 	//------------------------------------------------------------
 	//	PUBLIC METHODS
 	//------------------------------------------------------------
@@ -65,20 +67,32 @@ class LogoutController extends MainController
 		$this->setSessionName();
 
 		if ( Session::exists($this->sessionUser) ):
+
 			if ( Session::get($this->sessionUserId) === $id ):
 				Session::delete($this->sessionUser);
 
+				$logout = $this->model('Login');
+
 				if ( Cookie::exists(Config::get('cookie.remember')) ):
-					$logout = $this->model('Login');
 					$logout->removeRememberCredentials($id);
 
 					Cookie::delete(Config::get('cookie.remember'));
 				endif;
 
-				Flash::info(Config::message('message.logout'), false);
-
-				return $this->redirect('login');
+				if ( Config::get('user.activeAcc') ):
+					// Conta não ativada
+					if ( !$logout->activeVerify($id) ):
+						$link = Config::get('html.baseUrl') . '/user/activate';
+						Flash::warning(Config::message('message.user.account.inactive', $link));
+					else:
+						Flash::info(Config::message('message.logout'), false);
+					endif;
+				else:
+					Flash::info(Config::message('message.logout'), false);
+				endif;
 			endif;
+
+			return $this->redirect('login');
 		endif;
 
 		return $this->redirect(404);

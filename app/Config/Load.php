@@ -18,5 +18,6 @@ Config::set('load', [
 	'password',
 	'session',
 	'smarty',
+	'user',
 	'validate',
 ]);

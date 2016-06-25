@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Register;
 
 use Core\Config;
 use Core\MainModel;
@@ -14,7 +14,7 @@ use Helpers\Validate;
 /**
  * Modelo da página de cadastro de usuários
  */
-class RegisterModel extends MainModel
+class RegisterUserModel extends MainModel
 {
 	//------------------------------------------------------------
 	//	PROPERTIES

@@ -211,6 +211,34 @@ class LoginModel extends MainModel
 	}
 
 	/**
+	 * Verifica se a conta do usuário está ativa ou não
+	 *
+	 * @param int 	$id 	Id do usuário para verificação no logout
+	 * @return boolean
+	 */
+	public function activeVerify($id = null)
+	{
+		$userId = $this->user['id'];
+
+		$readUser = $this->newRead();
+
+		if ( !is_null($id) ):
+			$readUser->executeRead('users', 'WHERE id = :id', "id={$id}");
+		else:
+			$readUser->executeRead('users', 'WHERE id = :id', "id={$userId}");
+		endif;
+
+		$active = $readUser->getResult()[0]['active'];
+
+		if ( !is_null($active) ):
+			// Usuário com a conta ativada
+			return true;
+		endif;
+
+		return false;
+	}
+
+	/**
 	 * Apresenta mensagem de boas vindas com base nos dados completo ou não do usuário
 	 *
 	 * @access public

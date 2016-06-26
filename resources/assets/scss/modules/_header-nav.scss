@@ -20,8 +20,8 @@
 			background: seagreen;
 			color: $color-base-lighter;
 
-			@include border-radius(3px);
-			@include transition(.3s);
+			border-radius: 3px;
+			transition: all .3s;
 
 			&:hover {
 				background: darken(seagreen, 10%);

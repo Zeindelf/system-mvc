@@ -1,24 +1,24 @@
-@mixin border-radius($radius) {
-    -webkit-border-radius: $radius;
-       -moz-border-radius: $radius;
-        -ms-border-radius: $radius;
-            border-radius: $radius;
+/**
+ * Button styles
+ */
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+    padding: $padding-vertical $padding-horizontal;
+    font-size: $font-size;
+    line-height: $line-height;
+    border-radius: $border-radius;
 }
 
-@mixin border-radius-all($radius-top, $radius-right, $radius-bottom, $radius-left) {
-    -webkit-border-radius: $radius-top $radius-right $radius-bottom $radius-left;
-       -moz-border-radius: $radius-top $radius-right $radius-bottom $radius-left;
-        -ms-border-radius: $radius-top $radius-right $radius-bottom $radius-left;
-            border-radius: $radius-top $radius-right $radius-bottom $radius-left;
-}
+@mixin button-variant($color, $background, $border) {
+    color: $color;
+    background-color: $background;
+    border: $border;
 
-@mixin transition($transition) {
-    -webkit-transition: $transition;
-         -o-transition: $transition;
-            transition: $transition;
-}
-
-@mixin box-shadow($shadow) {
-    -webkit-box-shadow: $shadow;
-            box-shadow: $shadow;
+    &:hover,
+    &:focus,
+    &:active,
+    &:disabled {
+        color: $color;
+        background-color: darken($background, 10%);
+        border: darken($background, 10%);
+    }
 }

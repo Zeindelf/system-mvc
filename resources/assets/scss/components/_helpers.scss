@@ -1,26 +1,51 @@
+/**
+ * Buttons
+ */
 .button {
-	font-size: $font-size-medium;
+	display: inline-block;
+	color: $color-base-darkest;
+	background-color: $color-base-light;
 	font-family: $font-family-base;
 	font-weight: $font-weight-base;
 
-	background-color: $color-base-light;
-	color: $color-base-darkest;
+	border: 1px solid darken($color-base-light, 10%);
+	text-decoration: none;
+	cursor: pointer;
+	outline: none;
 
-	display: inline-block;
-	line-height: 2.4;
-	padding: 0 2em;
 	margin-top: .5em;
 	margin-right: 1em;
-	cursor: pointer;
-	text-decoration: none;
-	outline: none;
-	border: 1px solid darken($color-base-light, 10%);
 
-	@include border-radius(3px);
-	@include transition(.3s);
+	transition: all .3s;
 
-	&:hover {
+	@include button-size(0, 2em, $font-size-medium, 2.4, 3px);
+
+	&:hover,
+	&:focus,
+	&:disabled {
 		background-color: darken($color-base-light, 15%);
 		color: $color-base-lighter;
+	}
+
+	&:disabled {
+		cursor: disabled;
+		opacity: .65;
+	}
+
+	// Variações
+	&-success {
+		@include button-variant($button-success-color, $button-success-bg, $button-success-border);
+	}
+
+	&-info {
+		@include button-variant($button-info-color, $button-info-bg, $button-info-border);
+	}
+
+	&-warning {
+		@include button-variant($button-warning-color, $button-warning-bg, $button-warning-border);
+	}
+
+	&-danger {
+		@include button-variant($button-danger-color, $button-danger-bg, $button-danger-border);
 	}
 }

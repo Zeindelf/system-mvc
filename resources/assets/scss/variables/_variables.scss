@@ -9,6 +9,39 @@ $color-base-darkest:		darken($color-base, 26.8%) !default; // #222
 
 
 /**
+ * System colors
+ */
+$brand-default: 			darken(#428bca, 6.5%) !default;
+$brand-success: 			darken(#5cb85c, 5%) !default;
+$brand-info: 				darken(#5bc0de, 15%) !default;
+$brand-warning: 			#f0ad4e !default;
+$brand-danger: 				#d9534f !default;
+
+/**
+ * Button style
+ */
+$button-default-color:              #eee !default;
+$button-default-bg:                 $brand-default !default;
+$button-default-border:             darken($button-default-bg, 5%) !default;
+
+$button-success-color:              #eee !default;
+$button-success-bg:                 $brand-success !default;
+$button-success-border:             darken($button-success-bg, 5%) !default;
+
+$button-info-color:                 #eee !default;
+$button-info-bg:                    $brand-info !default;
+$button-info-border:                darken($button-info-bg, 5%) !default;
+
+$button-warning-color:              #eee !default;
+$button-warning-bg:                 $brand-warning !default;
+$button-warning-border:             darken($button-warning-bg, 5%) !default;
+
+$button-danger-color:               #eee !default;
+$button-danger-bg:                  $brand-danger !default;
+$button-danger-border:              darken($button-danger-bg, 5%) !default;
+
+
+/**
  * Typography
  */
 $font-family-sans-serif:	'Roboto Condensed', sans-serif !default;

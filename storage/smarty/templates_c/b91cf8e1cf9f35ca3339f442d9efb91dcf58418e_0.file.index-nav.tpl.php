@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-25 17:13:30
+/* Smarty version 3.1.29, created on 2016-06-26 14:03:34
   from "C:\wamp\www\Projects\system-mvc\storage\smarty\templates\partials\index-nav.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_576ee5eab73041_45097364',
+  'unifunc' => 'content_57700ae6ab29c6_09960800',
   'file_dependency' => 
   array (
     'b91cf8e1cf9f35ca3339f442d9efb91dcf58418e' => 
     array (
       0 => 'C:\\wamp\\www\\Projects\\system-mvc\\storage\\smarty\\templates\\partials\\index-nav.tpl',
-      1 => 1466884503,
+      1 => 1466960204,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_576ee5eab73041_45097364 ($_smarty_tpl) {
+function content_57700ae6ab29c6_09960800 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'C:\\wamp\\www\\Projects\\system-mvc\\vendor\\smarty\\smarty\\libs\\plugins\\modifier.capitalize.php';
 ?>
 <nav class="main__nav"><?php if (!isset($_SESSION['userSession'])) {?><ul><li><a class="main__nav--button" href="<?php echo $_smarty_tpl->tpl_vars['baseUrl']->value;?>

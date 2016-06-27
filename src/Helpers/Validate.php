@@ -72,7 +72,7 @@ class Validate
 							break;
 
 						case 'filter':
-							$value = $this->filter($value);
+							$value = $this->doubleChar($value);
 
 							foreach ( Config::get('filter') as $filter ):
 								if ( is_int(strripos($value, $filter)) ):
@@ -194,7 +194,13 @@ class Validate
         endif;
 	}
 
-	private function filter($string)
+	/**
+	 * Retira ocorrências de caracteres rapetidos na string para verificação
+	 *
+	 * @param string 	$string 	String para verificação
+	 * @return string 	String sem caracteres repetidos
+	 */
+	private function doubleChar($string)
 	{
 		$string = $this->numToStr($string);
 
@@ -213,6 +219,13 @@ class Validate
 		return $string;
 	}
 
+	/**
+	 * Converte números contido na string em letras associadas
+	 * 'z31nd3lf' é convertido para 'zeindelf'
+	 *
+	 * @param string 	$string 	String para ser convertida
+	 * @return string
+	 */
 	private function numToStr($string)
 	{
 		$arrString['number'] = '0123456789';

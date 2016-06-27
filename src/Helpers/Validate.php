@@ -71,6 +71,16 @@ class Validate
 							endif;
 							break;
 
+						case 'filter':
+							$value = $this->filter($value);
+
+							foreach ( Config::get('filter') as $filter ):
+								if ( is_int(strripos($value, $filter)) ):
+									$this->setError("Não utilize nomes ofensivos");
+								endif;
+							endforeach;
+							break;
+
 						case 'matches':
 							if ( $value != $data[$ruleVal] ):
 								$this->setError("O campo <b>{$name}</b> não confere.");
@@ -91,6 +101,7 @@ class Validate
 
 						case 'unique':
 							$value = strtolower($value);
+							$value = $this->numToStr($value);
 
 							$check = new Read();
 							$check->executeRead($ruleVal, "WHERE {$item} = :item", "item={$value}");
@@ -181,6 +192,36 @@ class Validate
         else:
             return false;
         endif;
+	}
+
+	private function filter($string)
+	{
+		$string = $this->numToStr($string);
+
+		// Letras duplicadas
+		$double = str_split($string, 1);
+
+		for ( $i = 0; $i < sizeof($double); $i++ ):
+			if ( array_key_exists($i + 1, $double) ):
+				if ( $double[$i] === $double[$i + 1] ):
+					unset($double[$i]);
+				endif;
+			endif;
+		endfor;
+
+		$string = implode($double);
+		return $string;
+	}
+
+	private function numToStr($string)
+	{
+		$arrString['number'] = '0123456789';
+		$arrString['letters'] ='oizeasbtbg';
+
+		// Converte números em letras para verificação
+		$string = strtr($string, $arrString['number'], $arrString['letters']);
+
+		return $string;
 	}
 
 	/**

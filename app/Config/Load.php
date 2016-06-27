@@ -10,6 +10,7 @@ Config::set('load', [
 	'class',
 	'cookie',
 	'database',
+	'filter',
 	'hash',
 	'html',
 	'login',

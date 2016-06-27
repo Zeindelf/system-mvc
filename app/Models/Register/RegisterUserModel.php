@@ -146,6 +146,7 @@ class RegisterUserModel extends MainModel
 		$validate = new Validate;
 		$validate->check($this->validate, [
 			'username' => [
+				'filter'   => true,
 				'name'     => 'Usuário',
 				'required' => true,
 				'min'      => Config::get('validate.user.minUsername'),

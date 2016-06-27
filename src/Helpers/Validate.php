@@ -204,10 +204,31 @@ class Validate
 	{
 		$string = $this->numToStr($string);
 
-		// Remove letras duplicadas
-		$double = str_split($string, 1);
-		$arrFilter = array_keys(array_flip($double));
-		$string = implode($arrFilter);
+		$letter = range('a', 'z');
+		$qntChar = 5;
+
+		for ( $i = 0; $i < count($letter); $i++ ):
+			for ( $j = 0; $j < $qntChar; $j++ ):
+				$repeat = str_repeat($letter[$i], $j);
+				$arrString = str_split($repeat);
+			endfor;
+
+			$arr[] = $arrString;
+		endfor;
+
+		for ( $i = 0; $i < count($arr); $i++ ):
+			for ( $j = 0; $j < count($arr[$i]); $j++ ):
+				$newRepeat[] = str_repeat($arr[$i][$j], $j + 1);
+			endfor;
+		endfor;
+
+		$doubleChar = array_chunk($newRepeat, $qntChar - 1);
+
+		for ( $i = 0; $i < count($doubleChar); $i++ ):
+			for ( $j = 1; $j <= 5; $j++ ):
+				$string = str_replace($doubleChar[$i], $letter[$i], $string);
+			endfor;
+		endfor;
 
 		return $string;
 	}

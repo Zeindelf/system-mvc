@@ -22,7 +22,7 @@ Um demo online pode ser acessado clicando aqui: [System MVC](http://system.zeind
 # Conteúdo
 
 * Cadastro de usuário
-* Filtro de palavras impróprias (palavrões)
+* Filtro de palavras impróprias para Nome de Usuário (palavrões)
 * Ativação da conta via e-mail (desativado por padrão)
 * Login no sistema
 * Bloqueio da conta após **x** tentativas falhas de login

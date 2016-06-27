@@ -204,18 +204,11 @@ class Validate
 	{
 		$string = $this->numToStr($string);
 
-		// Letras duplicadas
+		// Remove letras duplicadas
 		$double = str_split($string, 1);
+		$arrFilter = array_keys(array_flip($double));
+		$string = implode($arrFilter);
 
-		for ( $i = 0; $i < sizeof($double); $i++ ):
-			if ( array_key_exists($i + 1, $double) ):
-				if ( $double[$i] === $double[$i + 1] ):
-					unset($double[$i]);
-				endif;
-			endif;
-		endfor;
-
-		$string = implode($double);
 		return $string;
 	}
 

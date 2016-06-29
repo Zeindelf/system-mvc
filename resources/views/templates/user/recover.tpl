@@ -1,4 +1,4 @@
-{include file="partials/user/index-header.tpl"}
+{include file="user/partials/index-header.tpl"}
 
 	<div class="main__content">
 		<div class="container">
@@ -9,11 +9,11 @@
 
 				{$smarty.session.flash|default:null}
 
-				{include file="partials/user/form-recover.tpl"}
+				{include file="user/partials/form-recover.tpl"}
 
 			</div><!-- /.form__container -->
 
 		</div><!-- /.container -->
 	</div><!-- /.main__content -->
 
-{include file="partials/index-footer.tpl"}
+{include file="index/partials/index-footer.tpl"}

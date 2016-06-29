@@ -4,7 +4,7 @@
 			<h1>Profile de usuário</h1>
 		</div><!-- /.header__title -->
 
-		{include file="partials/user/index-nav.tpl"}
+		{include file="user/partials/index-nav.tpl"}
 
 	</header>
 </div><!-- /.main__header -->

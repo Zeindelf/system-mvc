@@ -1,6 +1,6 @@
 {assign var=baseUrl value=Config::get('html.baseUrl')}
 
-{include file="partials/index-header.tpl"}
+{include file="index/partials/index-header.tpl"}
 
 	<div class="main__content">
 		<div class="container">
@@ -18,4 +18,4 @@
 		</div><!-- /.container -->
 	</div><!-- /.main__content -->
 
-{include file="partials/index-footer.tpl"}
+{include file="index/partials/index-footer.tpl"}

@@ -2,6 +2,7 @@
 /node_modules/
 /public/assets/
 /storage/smarty/templates/
+/storage/smarty/templates_c/
 /vendor/
 
 /app/Config.php

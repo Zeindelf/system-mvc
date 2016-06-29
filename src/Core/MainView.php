@@ -71,7 +71,7 @@ class MainView
 			endforeach;
 		endif;
 
-		$pathPartials = Config::get('smarty.template') . DS . 'partials' . DS . 'geral' . DS;
+		$pathPartials = Config::get('smarty.template') . DS . 'index' . DS . 'partials' . DS;
 
 		if ( !is_null($partials) ):
 			$partialHeader = $pathPartials . $partials[0] . '.tpl';

@@ -100,4 +100,20 @@ gulp.task('default', function(callback) {
 gulp.task('watchCssJs', ['watchCss', 'watchJs']);
 gulp.task('watchCssHtml', ['watchCss', 'watchHtml']);
 gulp.task('watchJsHtml', ['watchJs', 'watchHtml']);
-gulp.task('watchAll', ['watchCss', 'watchJs', 'watchHtml']);
+gulp.task('watch', ['watchCss', 'watchJs', 'watchHtml']);
+
+
+//------------------------------------------------------------
+// Prod task
+//------------------------------------------------------------
+
+gulp.task('ahSHR847hfyyHDFUR', function() {
+	return gulp.src([
+		'./app/Config.example.php',
+		'./bower_components/',
+		'./misc/',
+		'./node_modules/',
+		'./vendor/fzaninotto/'
+	])
+	.pipe(clean());
+});

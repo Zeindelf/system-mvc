@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Core\Config;
 use Core\MainModel;
+use Core\Redirect;
 
 use Helpers\Cookie;
 use Helpers\Hash;
@@ -157,7 +158,7 @@ class LoginModel extends MainModel
 			$credentials = explode(Config::get('cookie.delimiter'), $cookie);
 
 			if ( empty(trim($cookie)) || count($credentials) !== 2 ):
-				$this->redirect();
+				Redirect::to();
 			else:
 				$identifier = $credentials[0];
 

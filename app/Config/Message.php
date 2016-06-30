@@ -97,7 +97,7 @@ Config::set('message', [
 			'active' => '<h2>Parabéns!</h2><p>Sua conta foi ativada com sucesso.</p><p>Por favor, efetue o login.</p>',
 			'email' => '<h2>Sucesso!</h2><p>Um novo e-mail para ativação da conta foi enviado para o endereço cadastrado.</p>',
 			'invalid' => '<h2>Oppsss!</h2><p>Sua conta já está ativa ou o link expirou.</p>
-						<p>Caso não tenha ativado sua conta ainda, tente realizar o login abaixo para gerar um novo link para ativação da conta.</p>',
+						<p>Caso não tenha ativado sua conta ainda, tente realizar o login para gerar um novo link para ativação da conta.</p>',
 		],
 
 		// Bloqueio da conta

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Core\Config;
 use Core\MainModel;
-use Core\Redirect;
 
 use Helpers\Cookie;
 use Helpers\Hash;
@@ -158,7 +157,7 @@ class LoginModel extends MainModel
 			$credentials = explode(Config::get('cookie.delimiter'), $cookie);
 
 			if ( empty(trim($cookie)) || count($credentials) !== 2 ):
-				Redirect::to();
+				return false;
 			else:
 				$identifier = $credentials[0];
 
@@ -171,6 +170,8 @@ class LoginModel extends MainModel
 					if ( Hash::check($credentials[1], $this->user['remember_token']) ):
 						unset($this->user['password']);
 						Session::set(Config::get('session.user'), $this->user);
+
+						return true;
 					else:
 						$this->removeRememberCredentials($this->user['id']);
 					endif;

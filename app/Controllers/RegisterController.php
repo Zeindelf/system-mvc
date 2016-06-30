@@ -63,23 +63,29 @@ class RegisterController extends MainController
 
 				return $this->redirect('register');
 			else:
-				if ( !$register->create() ):
-					Flash::danger(Config::message('message.system.error'));
+				if ( \Badwords\Badwords::verify(Session::get('registerData.username')) ):
+					Flash::danger(Config::message('message.register.censored'));
 
 					return $this->redirect('register');
 				else:
-					if ( Config::get('user.activeAcc') ):
-						$activate = $this->model('UserActivate', 'User');
-						$activate->sendEmail();
+					if ( !$register->create() ):
+						Flash::danger(Config::message('message.system.error'));
 
-						$link = Config::get('html.baseUrl') . '/user/activate';
-						Flash::warning(Config::message('message.register.activate', $link));
+						return $this->redirect('register');
 					else:
-						$register->sendEmail();
-						Flash::success(Config::message('message.register.success'));
-					endif;
+						if ( Config::get('user.activeAcc') ):
+							$activate = $this->model('UserActivate', 'User');
+							$activate->sendEmail();
 
-					return $this->redirect('login');
+							$link = Config::get('html.baseUrl') . '/user/activate';
+							Flash::warning(Config::message('message.register.activate', $link));
+						else:
+							$register->sendEmail();
+							Flash::success(Config::message('message.register.success'));
+						endif;
+
+						return $this->redirect('login');
+					endif;
 				endif;
 			endif;
 		endif;

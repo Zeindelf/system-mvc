@@ -71,16 +71,6 @@ class Validate
 							endif;
 							break;
 
-						case 'filter':
-							$value = $this->doubleChar($value);
-
-							foreach ( Config::get('filter') as $filter ):
-								if ( is_int(strripos($value, $filter)) ):
-									$this->setError("Não utilize nomes ofensivos");
-								endif;
-							endforeach;
-							break;
-
 						case 'matches':
 							if ( $value != $data[$ruleVal] ):
 								$this->setError("O campo <b>{$name}</b> não confere.");
@@ -192,45 +182,6 @@ class Validate
         else:
             return false;
         endif;
-	}
-
-	/**
-	 * Retira ocorrências de caracteres rapetidos na string para verificação
-	 *
-	 * @param string 	$string 	String para verificação
-	 * @return string 	String sem caracteres repetidos
-	 */
-	private function doubleChar($string)
-	{
-		$string = $this->numToStr($string);
-
-		$letter = range('a', 'z');
-		$qntChar = 5;
-
-		for ( $i = 0; $i < count($letter); $i++ ):
-			for ( $j = 0; $j < $qntChar; $j++ ):
-				$repeat = str_repeat($letter[$i], $j);
-				$arrString = str_split($repeat);
-			endfor;
-
-			$arr[] = $arrString;
-		endfor;
-
-		for ( $i = 0; $i < count($arr); $i++ ):
-			for ( $j = 0; $j < count($arr[$i]); $j++ ):
-				$newRepeat[] = str_repeat($arr[$i][$j], $j + 1);
-			endfor;
-		endfor;
-
-		$doubleChar = array_chunk($newRepeat, $qntChar - 1);
-
-		for ( $i = 0; $i < count($doubleChar); $i++ ):
-			for ( $j = 1; $j <= 5; $j++ ):
-				$string = str_replace($doubleChar[$i], $letter[$i], $string);
-			endfor;
-		endfor;
-
-		return $string;
 	}
 
 	/**

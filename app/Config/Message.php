@@ -84,6 +84,7 @@ Config::set('message', [
 						<p>Ative sua conta clicando no link que foi enviado no seu e-mail cadastrado.</p>
 						<p>Caso não tenha recebido nenhum e-mail, você pode solicitar outro <b><a href="%1%">clicando aqui</a></b></p>',
 		'success' => '<h2>Parabéns!</h2><p>Cadastrado efetuado com sucesso.</p><p>Por favor, efetue o login.</p>',
+		'censored' => '<h2>Oppsss!</h2><p>Não utilize palavras inapropriadas como nome de usuário.</p>',
 	],
 
 	//------------------------------------------------------------

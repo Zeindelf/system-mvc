@@ -71,9 +71,9 @@ class UserActivateModel extends MainModel
 		$mailer = new Mailer;
 		$mailer->from();
 
-		if ( $mailer->send('user-activate', $email, $subject, $data) ):
+		if ( $mailer->send('user-activate', $email, $subject, $data) ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}
@@ -89,20 +89,20 @@ class UserActivateModel extends MainModel
 		$this->identifier = explode(Config::get('password.delimiter'), $identifier);
 
 		$readUser = $this->newRead();
-		if ( isset($this->identifier[1]) ):
+		if ( isset($this->identifier[1]) ) {
 			$readUser->executeRead('users', 'WHERE active_hash = :active_hash', "active_hash={$this->identifier[1]}");
 
-			if ( $readUser->getResult() ):
+			if ( $readUser->getResult() ) {
 				$userId = $readUser->getResult()[0]['id'];
 
 				$updateUser = $this->newUpdate();
 				$updateUser->executeUpdate('users', ['active' => '1', 'active_hash' => null], 'WHERE id = :id', "id={$userId}");
 
-				if ( $updateUser->getResult() ):
+				if ( $updateUser->getResult() ) {
 					return true;
-				endif;
-			endif;
-		endif;
+				}
+			}
+		}
 
 		return false;
 	}

@@ -32,8 +32,6 @@ class LogoutController extends MainController
 	 */
 	private $sessionUserId;
 
-	private $sessionUserActive;
-
 	//------------------------------------------------------------
 	//	PUBLIC METHODS
 	//------------------------------------------------------------
@@ -48,10 +46,10 @@ class LogoutController extends MainController
 	{
 		$this->setSessionName();
 
-		if ( Session::exists($this->sessionUser) ):
+		if ( Session::exists($this->sessionUser) ) {
 			$id = Session::get($this->sessionUserId);
 			return $this->redirect('logout/process/' . $id);
-		endif;
+		}
 
 		return $this->redirect(404);
 	}
@@ -66,34 +64,35 @@ class LogoutController extends MainController
 	{
 		$this->setSessionName();
 
-		if ( Session::exists($this->sessionUser) ):
+		if ( Session::exists($this->sessionUser) ) {
 
-			if ( Session::get($this->sessionUserId) === $id ):
+			if ( Session::get($this->sessionUserId) === $id ) {
 				Session::delete($this->sessionUser);
 
 				$logout = $this->model('Login');
 
-				if ( Cookie::exists(Config::get('cookie.remember')) ):
+				if ( Cookie::exists(Config::get('cookie.remember')) ) {
 					$logout->removeRememberCredentials($id);
 
 					Cookie::delete(Config::get('cookie.remember'));
-				endif;
+				}
 
-				if ( Config::get('user.activeAcc') ):
+				if ( Config::get('user.activeAcc') ) {
 					// Conta não ativada
-					if ( !$logout->activeVerify($id) ):
+					if ( !$logout->activeVerify($id) ) {
 						$link = Config::get('html.baseUrl') . '/user/activate';
 						Flash::warning(Config::message('message.user.account.inactive', $link));
-					else:
+					} else {
 						Flash::info(Config::message('message.logout'), false);
-					endif;
-				else:
+					}
+
+				} else {
 					Flash::info(Config::message('message.logout'), false);
-				endif;
-			endif;
+				}
+			}
 
 			return $this->redirect('login');
-		endif;
+		}
 
 		return $this->redirect(404);
 	}

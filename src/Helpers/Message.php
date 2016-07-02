@@ -62,18 +62,21 @@ class Message
 	public static function get($type, $message, $close = true)
 	{
 		self::setType($type);
-		if ( self::$type ):
+
+		if ( self::$type ) {
 			self::$message = '<div class="alert ' . self::$type . '">';
-			if ( $close === 'bootstrap' ):
+
+			if ( $close === 'bootstrap' ) {
 				self::$message .= self::$bootstrapButton;
-			elseif ( $close ):
+			} elseif ( $close ) {
 				self::$message .= '<span class="alert-close"></span>';
-			endif;
+			}
+
 			self::$message .= $message;
 			self::$message .= '</div>';
 
 			return self::$message;
-		else:
+		} else {
 			echo '<b>O tipo de mensagem informado n&atilde;o existe. Utilize algum destes:
 					<ul>
 						<li>success</li>
@@ -84,7 +87,7 @@ class Message
 				</b>';
 
 			return false;
-		endif;
+		}
 	}
 
 	//------------------------------------------------------------
@@ -100,7 +103,7 @@ class Message
 	 */
 	private static function setType($type)
 	{
-		switch ( $type ):
+		switch ( $type ) {
 			case 'success':
 				self::$type = Config::get('class.success');
 				break;
@@ -115,7 +118,7 @@ class Message
 				break;
 			default:
 				self::$type = false;
-		endswitch;
+		}
 
 		return self::$type;
 	}

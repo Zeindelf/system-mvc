@@ -82,9 +82,9 @@ class PasswordChangeModel extends MainModel
 		$updateUser = $this->newUpdate();
 		$updateUser->executeUpdate('users', ['password' => $newPassword], 'WHERE id = :id', "id={$userId}");
 
-		if ( $updateUser->getResult() ):
+		if ( $updateUser->getResult() ) {
 			return true;
-		endif;
+		}
 
 		return false;
 
@@ -107,9 +107,9 @@ class PasswordChangeModel extends MainModel
 		$userPassword = $this->user['password'];
 		$currentPassword = Request::post('current_password');
 
-		if ( Hash::check($currentPassword, $userPassword) ):
+		if ( Hash::check($currentPassword, $userPassword) ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

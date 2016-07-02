@@ -87,9 +87,9 @@ class ContactModel extends MainModel
 		$mailer = new Mailer;
 		$mailer->from('site@zeindelf.com', $name, $email);
 
-		if ( $mailer->send('contact', Config::get('mail.username'), $subjectEmail, $data) ):
+		if ( $mailer->send('contact', Config::get('mail.username'), $subjectEmail, $data) ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

@@ -24,6 +24,11 @@ require_once APP_DIR . DS . 'Config.php';
 date_default_timezone_set(DEFAULT_TIMEZONE);
 
 /**
+ * Carrega as funções
+ */
+require_once SRC_DIR . DS . 'functions.php';
+
+/**
  * Carrega as configurações da classe Config
  */
 $load = new Load;

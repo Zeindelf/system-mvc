@@ -71,11 +71,11 @@ class UserProfileModel extends MainModel
 		$firstname = Session::get(Config::get('session.user'))['firstname'];
 		$lastname = Session::get(Config::get('session.user'))['lastname'];
 
-		if ( is_null($firstname) || is_null($lastname) ):
+		if ( is_null($firstname) || is_null($lastname) ) {
 			$userdata = 'Olá, ' . ucfirst($username);
-		else:
+		} else {
 			$userdata = 'Olá, ' . ucfirst($firstname) . ' ' . ucfirst($lastname);
-		endif;
+		}
 
 		$this->data = [
 			'variables' => [

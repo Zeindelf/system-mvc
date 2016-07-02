@@ -84,22 +84,22 @@ class PasswordResetModel extends MainModel
 		$this->identifier = explode(Config::get('password.delimiter'), Session::get('passwordUri'));
 
 		$readUser = $this->newRead();
-		if ( isset($this->identifier[1]) ):
+		if ( isset($this->identifier[1]) ) {
 			$readUser->executeRead('users', 'WHERE recover_hash = :recover_hash', "recover_hash={$this->identifier[1]}");
-		endif;
+		}
 
-		if ( $readUser->getResult() ):
+		if ( $readUser->getResult() ) {
 			$this->user = $readUser->getResult()[0];
 			$emailHash = Hash::hash($this->user['email']);
 
 			return $this->expire();
-		endif;
+		}
 
-		if ( isset($emailHash) ):
-			if ( $emailHash === $this->identifier[0] ):
+		if ( isset($emailHash) ) {
+			if ( $emailHash === $this->identifier[0] ) {
 				return true;
-			endif;
-		endif;
+			}
+		}
 
 		Session::delete('passwordUri');
 		return false;
@@ -119,10 +119,10 @@ class PasswordResetModel extends MainModel
 		$updateUser = $this->newUpdate();
 		$updateUser->executeUpdate('users', ['password' => $newPassword], 'WHERE id = :id', "id={$userId}");
 
-		if ( $updateUser->getResult() ):
+		if ( $updateUser->getResult() ) {
 			$updateUser->executeUpdate('users', ['recover_hash' => null], 'WHERE id = :id', "id={$userId}");
 			return true;
-		endif;
+		}
 
 		return false;
 	}
@@ -145,12 +145,12 @@ class PasswordResetModel extends MainModel
 		$date->modify('+' . Config::get('password.expire') . 'minutes');
 		$expire = $date->format('Y-m-d H:i:s');
 
-		if ( $expire < $now ):
+		if ( $expire < $now ) {
 			$updateUser = $this->newUpdate();
 			$updateUser->executeUpdate('users', ['recover_hash' => null], 'WHERE id = :id', "id={$this->user['id']}");
 
 			return false;
-		endif;
+		}
 
 		return true;
 	}

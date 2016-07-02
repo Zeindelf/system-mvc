@@ -95,9 +95,9 @@ class UserUnblockModel extends MainModel
 		$mailer = new Mailer;
 		$mailer->from();
 
-		if ( $mailer->send('user-unblock', $email, $subject, $data) ):
+		if ( $mailer->send('user-unblock', $email, $subject, $data) ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

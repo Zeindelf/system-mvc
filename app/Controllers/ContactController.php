@@ -41,33 +41,33 @@ class ContactController extends MainController
 	 */
 	public function processAction()
 	{
-		if ( !Http::checkReferer('contact') ):
+		if ( !Http::checkReferer('contact') ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('contactData', 'contact');
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$contact = $this->model('Contact');
 
 			$errors = $contact->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $contact->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('contact');
-			else:
-				if ( $contact->sendEmail() ):
+			} else {
+				if ( $contact->sendEmail() ) {
 					Flash::success(Config::get('message.contact.success'));
 
 					return $this->redirect();
-				else:
+				} else {
 					Flash::danger(Config::message('message.system.error'));
 
 					return $this->redirect('contact');
-				endif;
-			endif;
-		endif;
+				}
+			}
+		}
 	}
 }

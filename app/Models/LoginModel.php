@@ -103,12 +103,12 @@ class LoginModel extends MainModel
 		$this->user = $readUser->getResult()[0];
 		$check = Hash::check($password, $this->user['password']);
 
-		if ( $check ):
+		if ( $check ) {
 			// Verifica o número de tentativas de login
 			$this->attempts = $this->user['login_attempts'];
-			if ( $this->attempts == Config::get('login.attempts') ):
+			if ( $this->attempts == Config::get('login.attempts') ) {
 				return false;
-			endif;
+			}
 
 			unset($this->user['password']);
 			$userId = $this->user['id'];
@@ -119,7 +119,7 @@ class LoginModel extends MainModel
 			Session::set(Config::get('session.user'), $this->user);
 
 			// Lembrar usuário
-			if ( $remember === 'on' ):
+			if ( $remember === 'on' ) {
 				$rememberIdentifier = Hash::randomHash(128);
 				$rememberToken = Hash::randomHash(128);
 
@@ -130,14 +130,14 @@ class LoginModel extends MainModel
 					$rememberIdentifier . Config::get('cookie.delimiter') . $rememberToken,
 					Config::get('cookie.expiry')
 				);
-			endif;
+			}
 
-			if ( Config::get('user.activeAcc') ):
+			if ( Config::get('user.activeAcc') ) {
 				Session::set('activateId', $userId);
-			endif;
+			}
 
 			return true;
-		endif;
+		}
 
 		return false;
 	}
@@ -151,14 +151,14 @@ class LoginModel extends MainModel
 	 */
 	public function checkRememberMe()
 	{
-		if ( Cookie::get(Config::get('cookie.remember')) && !Session::get(Config::get('session.user')) ):
+		if ( Cookie::get(Config::get('cookie.remember')) && !Session::get(Config::get('session.user')) ) {
 			$cookie = Cookie::get(Config::get('cookie.remember'));
 
 			$credentials = explode(Config::get('cookie.delimiter'), $cookie);
 
-			if ( empty(trim($cookie)) || count($credentials) !== 2 ):
+			if ( empty(trim($cookie)) || count($credentials) !== 2 ) {
 				return false;
-			else:
+			} else {
 				$identifier = $credentials[0];
 
 				$readUser = $this->newRead();
@@ -166,18 +166,18 @@ class LoginModel extends MainModel
 
 				$this->user = $readUser->getResult()[0];
 
-				if ( $readUser->getRowCount() > 0 ):
-					if ( Hash::check($credentials[1], $this->user['remember_token']) ):
+				if ( $readUser->getRowCount() > 0 ) {
+					if ( Hash::check($credentials[1], $this->user['remember_token']) ) {
 						unset($this->user['password']);
 						Session::set(Config::get('session.user'), $this->user);
 
 						return true;
-					else:
+					} else {
 						$this->removeRememberCredentials($this->user['id']);
-					endif;
-				endif;
-			endif;
-		endif;
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -194,12 +194,12 @@ class LoginModel extends MainModel
 
 		Session::set('blockUserData', $this->user['id']);
 
-		if ( $this->countAttempts <= Config::get('login.attempts') ):
+		if ( $this->countAttempts <= Config::get('login.attempts') ) {
 			$updateUser = $this->newUpdate();
 			$updateUser->executeUpdate('users', ['login_attempts' => $this->countAttempts], 'WHERE id = :id', "id={$userId}");
 
 			return false;
-		endif;
+		}
 
 		return true;
 	}
@@ -228,18 +228,18 @@ class LoginModel extends MainModel
 
 		$readUser = $this->newRead();
 
-		if ( !is_null($id) ):
+		if ( !is_null($id) ) {
 			$readUser->executeRead('users', 'WHERE id = :id', "id={$id}");
-		else:
+		} else {
 			$readUser->executeRead('users', 'WHERE id = :id', "id={$userId}");
-		endif;
+		}
 
 		$active = $readUser->getResult()[0]['active'];
 
-		if ( !is_null($active) ):
+		if ( !is_null($active) ) {
 			// Usuário com a conta ativada
 			return true;
-		endif;
+		}
 
 		return false;
 	}
@@ -260,11 +260,11 @@ class LoginModel extends MainModel
 		$nameless = [$username, $profileLink];
 		$fullname = [$firstname, $lastname];
 
-		if ( empty($firstname) || empty($lastname ) ):
+		if ( empty($firstname) || empty($lastname ) ) {
 			return Config::message('message.welcome.nameless', $nameless);
-		else:
+		} else {
 			return Config::message('message.welcome.fullname', $fullname);
-		endif;
+		}
 	}
 
 	//------------------------------------------------------------

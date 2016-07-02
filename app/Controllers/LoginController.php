@@ -28,9 +28,9 @@ class LoginController extends MainController
 	 */
 	public function indexAction()
 	{
-		if ( Auth::user('logged') ):
+		if ( Auth::user('logged') ) {
 			return false;
-		endif;
+		}
 
 		$login = $this->model('Login');
 
@@ -46,65 +46,65 @@ class LoginController extends MainController
 	 */
 	public function processAction()
 	{
-		if ( !Http::checkReferer('login') ):
+		if ( !Http::checkReferer('login') ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('loginData', 'login');
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$login = $this->model('Login');
 
 			$errors = $login->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $login->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('login');
-			else:
-				if ( !$login->checkLogin() ):
+			} else {
+				if ( !$login->checkLogin() ) {
 					$login->attempts();
 
 					$loginAttempts = Config::get('login.attempts') - $login->countAttempts;
 
 					// Aviso sobre a última tentativa de login
-					if ( $loginAttempts == 1 ):
+					if ( $loginAttempts == 1 ) {
 						Flash::danger(Config::message('message.login.alert'));
 
 						return $this->redirect('password/recover');
-					endif;
+					}
 
 					// Bloqueio da conta
-					if ( $login->attempts == Config::get('login.attempts') || $loginAttempts == 0 ):
+					if ( $login->attempts == Config::get('login.attempts') || $loginAttempts == 0 ) {
 						return $this->redirect('user/block');
-					endif;
+					}
 
 					// Contagem de erro de senha
-					if ( $loginAttempts < 3 && $loginAttempts > 0 ):
+					if ( $loginAttempts < 3 && $loginAttempts > 0 ) {
 						Flash::danger(Config::message('message.login.warning', $loginAttempts));
-					else:
+					} else {
 						Flash::danger(Config::message('message.login.invalid'));
-					endif;
+					}
 
 					return $this->redirect('login');
-				else:
-					if ( Config::get('user.activeAcc') ):
+				} else {
+					if ( Config::get('user.activeAcc') ) {
 						// Conta ativa
-						if ( $login->activeVerify() ):
+						if ( $login->activeVerify() ) {
 							Flash::success($login->getUserName());
 
 							return $this->redirect();
-						else:
+						} else {
 							return $this->redirect('logout');
-						endif;
-					endif;
+						}
+					}
 
 					Flash::success($login->getUserName());
 
 					return $this->redirect();
-				endif;
-			endif;
-		endif;
+				}
+			}
+		}
 	}
 }

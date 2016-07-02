@@ -77,7 +77,7 @@ class UserUpdateModel extends MainModel
 		$updateUser = $this->newUpdate();
 		$updateUser->executeUpdate('users', $data, 'WHERE id = :id', "id={$this->user['id']}");
 
-		if ( $updateUser->getResult() ):
+		if ( $updateUser->getResult() ) {
 			$readUser = $this->newRead();
 			$readUser->executeRead('users', 'WHERE id = :id', "id={$this->user['id']}");
 			$this->user = $readUser->getResult()[0];
@@ -86,7 +86,7 @@ class UserUpdateModel extends MainModel
 			Session::set(Config::get('session.user'), $this->user);
 
 			return true;
-		endif;
+		}
 
 		return false;
 	}

@@ -78,20 +78,20 @@ class UserRecoverModel extends MainModel
 		$this->identifier = explode(Config::get('password.delimiter'), Session::get('userUri'));
 
 		$readUser = $this->newRead();
-		if ( isset($this->identifier[1]) ):
+		if ( isset($this->identifier[1]) ) {
 			$readUser->executeRead('users', 'WHERE login_recover = :login_recover', "login_recover={$this->identifier[1]}");
-		endif;
+		}
 
-		if ( $readUser->getResult() ):
+		if ( $readUser->getResult() ) {
 			$this->user = $readUser->getResult()[0];
 			$emailHash = Hash::hash($this->user['email']);
-		endif;
+		}
 
-		if ( isset($emailHash) ):
-			if ( $emailHash === $this->identifier[0] ):
+		if ( isset($emailHash) ) {
+			if ( $emailHash === $this->identifier[0] ) {
 				return true;
-			endif;
-		endif;
+			}
+		}
 
 		Session::delete('userUri');
 		return false;
@@ -105,9 +105,9 @@ class UserRecoverModel extends MainModel
 	 */
 	public function checkEmail()
 	{
-		if ( ($this->user['email'] === Session::get('recoverUserData.email')) ):
+		if ( ($this->user['email'] === Session::get('recoverUserData.email')) ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}
@@ -124,9 +124,9 @@ class UserRecoverModel extends MainModel
 		$updateUser = $this->newUpdate();
 		$updateUser->executeUpdate('users', ['login_attempts' => null, 'login_recover' => null], 'WHERE id = :id', "id={$this->user['id']}");
 
-		if ( $updateUser->getResult() ):
+		if ( $updateUser->getResult() ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

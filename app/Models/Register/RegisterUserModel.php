@@ -93,13 +93,13 @@ class RegisterUserModel extends MainModel
 		$createUser = $this->newCreate();
 		$createUser->executeCreate('users', $data);
 
-		if ( $createUser->getResult() ):
-			if ( Config::get('user.activeAcc') ):
+		if ( $createUser->getResult() ) {
+			if ( Config::get('user.activeAcc') ) {
 				Session::set('activateId', $createUser->getResult());
-			endif;
+			}
 
 			return true;
-		endif;
+		}
 
 		return false;
 	}
@@ -122,9 +122,9 @@ class RegisterUserModel extends MainModel
 		$mailer = new Mailer;
 		$mailer->from();
 
-		if ( $mailer->send('success-register', $email, $subject, $data) ):
+		if ( $mailer->send('success-register', $email, $subject, $data) ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

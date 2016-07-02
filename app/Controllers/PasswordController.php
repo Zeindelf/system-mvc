@@ -29,9 +29,9 @@ class PasswordController extends MainController
 	 */
 	public function changeAction()
 	{
-		if ( Auth::user('guest') ):
+		if ( Auth::user('guest') ) {
 			return false;
-		endif;
+		}
 
 		$passwordChange = $this->model('PasswordChange', 'Password');
 
@@ -46,41 +46,41 @@ class PasswordController extends MainController
 	 */
 	public function changeProcessAction()
 	{
-		if ( !Http::checkReferer('password/change') ):
+		if ( !Http::checkReferer('password/change') ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('changePasswordData', 'password/change');
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$passwordChange = $this->model('PasswordChange', 'Password');
 
 			$errors = $passwordChange->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $passwordChange->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('password/change');
-			else:
-				if ( !$passwordChange->checkPassword() ):
+			} else {
+				if ( !$passwordChange->checkPassword() ) {
 					Flash::danger(Config::message('message.password.change.invalid'));
 
 					return $this->redirect('password/change');
-				else:
-					if ( $passwordChange->changePassword() ):
+				} else {
+					if ( $passwordChange->changePassword() ) {
 						Flash::success(Config::message('message.password.change.success'));
 						$username = Session::get(Config::get('session.user'))['username'];
 
 						return $this->redirect('user/profile/' . $username);
-					else:
+					} else {
 						Flash::danger(Config::message('message.system.error'));
 
 						return $this->redirect('password/change');
-					endif;
-				endif;
-			endif;
-		endif;
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -91,9 +91,9 @@ class PasswordController extends MainController
 	 */
 	public function recoverAction()
 	{
-		if ( Auth::user('logged') ):
+		if ( Auth::user('logged') ) {
 			return false;
-		endif;
+		}
 
 		$passwordRecover = $this->model('PasswordRecover', 'Password');
 
@@ -109,40 +109,40 @@ class PasswordController extends MainController
 	 */
 	public function recoverProcessAction()
 	{
-		if ( !Http::checkReferer('password/recover') ):
+		if ( !Http::checkReferer('password/recover') ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('recoverPasswordData', 'password/recover');
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$passwordRecover = $this->model('PasswordRecover', 'Password');
 
 			$errors = $passwordRecover->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $passwordRecover->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('password/recover');
-			else:
-				if ( !$passwordRecover->checkEmail() ):
+			} else {
+				if ( !$passwordRecover->checkEmail() ) {
 					Flash::danger(Config::message('message.password.recover.invalid'));
 
 					return $this->redirect('password/recover');
-				else:
-					if ( $passwordRecover->sendEmail() ):
+				} else {
+					if ( $passwordRecover->sendEmail() ) {
 						Flash::success(Config::message('message.password.recover.success'));
 
 						return $this->redirect('login');
-					else:
+					} else {
 						Flash::danger(Config::message('message.system.error'));
 
 						return $this->redirect('password/recover');
-					endif;
-				endif;
-			endif;
-		endif;
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -154,10 +154,10 @@ class PasswordController extends MainController
 	 */
 	public function resetAction($identifier = null)
 	{
-		if ( !is_null($identifier) ):
-			if ( Session::get(Config::get('session.user')) ):
+		if ( !is_null($identifier) ) {
+			if ( Session::get(Config::get('session.user')) ) {
 				return $this->redirect(404);
-			endif;
+			}
 
 			$passwordReset = $this->model('PasswordReset', 'Password');
 
@@ -167,7 +167,7 @@ class PasswordController extends MainController
 			Session::set('passwordUri', $getUri[2]);
 
 			return $this->view($this->getTemplate(), $passwordReset->getData());
-		endif;
+		}
 
 		return $this->redirect(404);
 	}
@@ -181,34 +181,34 @@ class PasswordController extends MainController
 	public function resetProcessAction()
 	{
 
-		if ( !Http::checkReferer('password/reset/' . Session::get('passwordUri')) ):
+		if ( !Http::checkReferer('password/reset/' . Session::get('passwordUri')) ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('resetPasswordData', 'password/reset/' . Session::get('passwordUri'));
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$passwordReset = $this->model('PasswordReset', 'Password');
 
 			$errors = $passwordReset->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $passwordReset->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('password/reset/' . Session::get('passwordUri'));
-			else:
-				if ( $passwordReset->change() ):
+			} else {
+				if ( $passwordReset->change() ) {
 					Session::delete('passwordUri');
 					Flash::success(Config::message('message.password.reset.success'));
 
 					return $this->redirect('login');
-				else:
+				} else {
 					Flash::danger(Config::message('message.system.error'));
 
 					return $this->redirect('password/reset/' . Session::get('passwordUri'));
-				endif;
-			endif;
-		endif;
+				}
+			}
+		}
 	}
 }

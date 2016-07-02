@@ -54,70 +54,70 @@ class Validate
 	 */
 	public function check($data, array $items)
 	{
-		foreach ( $items as $item => $rules ):
-			foreach ( $rules as $rule => $ruleVal ):
+		foreach ( $items as $item => $rules ) {
+			foreach ( $rules as $rule => $ruleVal ) {
 
 				$value = $data[$item];
 				$name = $items[$item]['name'];
 
-				if ( $rule === 'required' && empty($value) ):
+				if ( $rule === 'required' && empty($value) ) {
 					$this->setError("O campo <b>{$name}</b> não pode ser vazio.");
+				} else {
+					if ( !empty($value) ) {
+						switch ( $rule ) {
+							case 'email':
+								if ( !$this->email($value) ) {
+									$this->setError("Este formato de e-mail não é válido.");
+								}
+								break;
 
-				elseif ( !empty($value) ):
-					switch ( $rule ):
-						case 'email':
-							if ( !$this->email($value) ):
-								$this->setError("Este formato de e-mail não é válido.");
-							endif;
-							break;
+							case 'matches':
+								if ( $value != $data[$ruleVal] ) {
+									$this->setError("O campo <b>{$name}</b> não confere.");
+								}
+								break;
 
-						case 'matches':
-							if ( $value != $data[$ruleVal] ):
-								$this->setError("O campo <b>{$name}</b> não confere.");
-							endif;
-							break;
+							case 'max':
+								if ( strlen($value) > $ruleVal ) {
+									$this->setError("O campo <b>{$name}</b> requer o máximo de <b>{$ruleVal}</b> caracteres.");
+								}
+								break;
 
-						case 'max':
-							if ( strlen($value) > $ruleVal ):
-								$this->setError("O campo <b>{$name}</b> requer o máximo de <b>{$ruleVal}</b> caracteres.");
-							endif;
-							break;
+							case 'min':
+								if ( strlen($value) < $ruleVal ) {
+									$this->setError("O campo <b>{$name}</b> requer o mínimo de <b>{$ruleVal}</b> caracteres.");
+								}
+								break;
 
-						case 'min':
-							if ( strlen($value) < $ruleVal ):
-								$this->setError("O campo <b>{$name}</b> requer o mínimo de <b>{$ruleVal}</b> caracteres.");
-							endif;
-							break;
+							case 'unique':
+								$value = strtolower($value);
+								$value = $this->numToStr($value);
 
-						case 'unique':
-							$value = strtolower($value);
-							$value = $this->numToStr($value);
+								$check = new Read();
+								$check->executeRead($ruleVal, "WHERE {$item} = :item", "item={$value}");
 
-							$check = new Read();
-							$check->executeRead($ruleVal, "WHERE {$item} = :item", "item={$value}");
+								// Realizar a checagem se o campo informado como único já pertence ao usuário
+								$userLogged = Session::get(Config::get('session.user'))[$item];
 
-							// Realizar a checagem se o campo informado como único já pertence ao usuário
-							$userLogged = Session::get(Config::get('session.user'))[$item];
+								if ( $check->getResult() && $userLogged !== $value) {
+									$this->setError("<b>{$name}</b> já cadastrado.");
+								}
+								break;
 
-							if ( $check->getResult() && $userLogged !== $value):
-								$this->setError("<b>{$name}</b> já cadastrado.");
-							endif;
-							break;
+							case 'username':
+								if ( !preg_match("/^([a-zA-Z0-9]+)$/", $value) ) {
+									$this->setError("O campo <b>{$name}</b> não pode conter caracteres especias e/ou espaços.");
+								}
+								break;
+						}
+					}
+				}
+			}
+		}
 
-						case 'username':
-							if ( !preg_match("/^([a-zA-Z0-9]+)$/", $value) ):
-								$this->setError("O campo <b>{$name}</b> não pode conter caracteres especias e/ou espaços.");
-							endif;
-							break;
-					endswitch;
-				endif;
-
-			endforeach;
-		endforeach;
-
-		if ( empty($this->errors) ):
+		if ( empty($this->errors) ) {
 			$this->checked = true;
-		endif;
+		}
 	}
 
 	/**
@@ -131,9 +131,9 @@ class Validate
 		$this->listMessages = '<h3>Por favor, corrija o(s) erro(s) abaixo:</h3>
 								<ul class="message-errors">';
 
-		foreach ( $this->errors() as $error ):
+		foreach ( $this->errors() as $error ) {
 			$this->listMessages .= '<li>' . $error . '</li>';
-		endforeach;
+		}
 
 		$this->listMessages .= '</ul>';
 
@@ -177,11 +177,11 @@ class Validate
 	{
         $format = '/[a-z0-9_\.\-]+@[a-z0-9_\.\-]*[a-z0-9_\.\-]+\.[a-z]{2,4}$/';
 
-        if (preg_match($format, $email)):
+        if (preg_match($format, $email)) {
             return true;
-        else:
-            return false;
-        endif;
+        }
+
+		return false;
 	}
 
 	/**

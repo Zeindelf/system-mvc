@@ -28,9 +28,9 @@ class RegisterController extends MainController
 	 */
 	public function indexAction()
 	{
-		if ( Auth::user('logged') ):
+		if ( Auth::user('logged') ) {
 			return false;
-		endif;
+		}
 
 		$register = $this->model('RegisterUser', 'Register');
 
@@ -46,48 +46,48 @@ class RegisterController extends MainController
 	 */
 	public function processAction()
 	{
-		if ( !Http::checkReferer('register') ):
+		if ( !Http::checkReferer('register') ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('registerData', 'register');
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$register = $this->model('RegisterUser', 'Register');
 
 			$errors = $register->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $register->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('register');
-			else:
-				if ( \Badwords\Badwords::verify(Session::get('registerData.username')) ):
+			} else {
+				if ( \Badwords\Badwords::verify(Session::get('registerData.username')) ) {
 					Flash::danger(Config::message('message.register.censored'));
 
 					return $this->redirect('register');
-				else:
-					if ( !$register->create() ):
+				} else {
+					if ( !$register->create() ) {
 						Flash::danger(Config::message('message.system.error'));
 
 						return $this->redirect('register');
-					else:
-						if ( Config::get('user.activeAcc') ):
+					} else {
+						if ( Config::get('user.activeAcc') ) {
 							$activate = $this->model('UserActivate', 'User');
 							$activate->sendEmail();
 
 							$link = Config::get('html.baseUrl') . '/user/activate';
 							Flash::warning(Config::message('message.register.activate', $link));
-						else:
+						} else {
 							$register->sendEmail();
 							Flash::success(Config::message('message.register.success'));
-						endif;
+						}
 
 						return $this->redirect('login');
-					endif;
-				endif;
-			endif;
-		endif;
+					}
+				}
+			}
+		}
 	}
 }

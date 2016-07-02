@@ -80,9 +80,9 @@ class PasswordRecoverModel extends MainModel
 
 		Session::set( 'recoverUserData', $readUser->getResult()[0] );
 
-		if ( $readUser->getRowCount() > 0 ):
+		if ( $readUser->getRowCount() > 0 ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}
@@ -119,9 +119,9 @@ class PasswordRecoverModel extends MainModel
 		$mailer = new Mailer;
 		$mailer->from();
 
-		if ( $mailer->send('password-recover', $email, $subject, $data) ):
+		if ( $mailer->send('password-recover', $email, $subject, $data) ) {
 			return true;
-		endif;
+		}
 
 		return false;
 	}

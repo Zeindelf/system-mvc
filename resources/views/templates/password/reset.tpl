@@ -1,4 +1,4 @@
-index/{include file="index/partials/index-header.tpl"}
+{include file="index/partials/index-header.tpl"}
 
 	<div class="main__content">
 		<div class="container">

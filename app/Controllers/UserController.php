@@ -41,14 +41,14 @@ class UserController extends MainController
 	 */
 	public function profileAction($username = null)
 	{
-		if ( Session::exists(Config::get('session.user')) ):
+		if ( Session::exists(Config::get('session.user')) ) {
 			// Usuário logado, pode alterar seu perfil
-			if ( $username === Session::get(Config::get('session.user'))['username'] ):
+			if ( $username === Session::get(Config::get('session.user'))['username'] ) {
 				$profile = $this->model('UserProfile', 'User');
 
 				return $this->view($this->getTemplate(), $profile->getData());
-			endif;
-		endif;
+			}
+		}
 
 		// @TODO Outros usuários poderão ver o perfil (?)
 		return $this->redirect(404);
@@ -61,17 +61,17 @@ class UserController extends MainController
 	 */
 	public function activateAction()
 	{
-		if ( Http::checkReferer('register') || Http::checkReferer('login') ):
+		if ( Http::checkReferer('register') || Http::checkReferer('login') ) {
 			$activate = $this->model('UserActivate', 'User');
 
-			if ( $activate->sendEmail() ):
+			if ( $activate->sendEmail() ) {
 				Flash::success(Config::get('message.user.account.email'));
-			else:
+			} else {
 				Flash::danger(Config::message('message.system.error'));
-			endif;
+			}
 
 			return $this->redirect('login');
-		endif;
+		}
 
 		return $this->redirect(404);
 	}
@@ -84,20 +84,20 @@ class UserController extends MainController
 	 */
 	public function activateProcessAction($identifier = null)
 	{
-		if ( !is_null($identifier) ):
+		if ( !is_null($identifier) ) {
 			$activateUser = $this->model('UserActivate', 'User');
 
 			$getUri = Request::get('uri');
 			$getUri = explode('/', $getUri);
 
-			if ( $activateUser->getIdentifier($getUri[2]) ):
+			if ( $activateUser->getIdentifier($getUri[2]) ) {
 				Flash::success(Config::message('message.user.account.active'));
 
 				Session::delete('activateId');
 
 				return $this->redirect('login');
-			endif;
-		endif;
+			}
+		}
 
 		Flash::warning(Config::get('message.user.account.invalid'));
 		return $this->redirect('login');
@@ -110,9 +110,9 @@ class UserController extends MainController
 	 */
 	public function blockAction()
 	{
-		if ( !Http::checkReferer('login') ):
+		if ( !Http::checkReferer('login') ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$userBlock = $this->model('UserBlock', 'User');
 
@@ -126,17 +126,17 @@ class UserController extends MainController
 	 */
 	public function unblockAction()
 	{
-		if ( !Http::checkReferer('user/block') ):
+		if ( !Http::checkReferer('user/block') ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$unblock = $this->model('UserUnblock', 'User');
 
-		if ( $unblock->sendEmail() ):
+		if ( $unblock->sendEmail() ) {
 			Flash::success(Config::message('message.user.unblock.success'));
-		else:
+		}else {
 			Flash::danger(Config::message('message.system.error'));
-		endif;
+		}
 
 		return $this->redirect();
 	}
@@ -149,19 +149,19 @@ class UserController extends MainController
 	 */
 	public function recoverAction($identifier = null)
 	{
-		if ( !is_null($identifier) ):
+		if ( !is_null($identifier) ) {
 			$userRecover = $this->model('UserRecover', 'User');
 
 			$getUri = Request::get('uri');
 			$getUri = explode('/', $getUri);
 			Session::set('userUri', $getUri[2]);
 
-			if ( !$userRecover->getIdentifier() ):
+			if ( !$userRecover->getIdentifier() ) {
 				return $this->redirect(404);
-			endif;
+			}
 
 			return $this->view($this->getTemplate(), $userRecover->getData());
-		endif;
+		}
 
 		return $this->redirect(404);
 	}
@@ -173,43 +173,43 @@ class UserController extends MainController
 	 */
 	public function recoverProcessAction()
 	{
-		if ( !Http::checkReferer('user/recover/' . Session::get('userUri')) ):
+		if ( !Http::checkReferer('user/recover/' . Session::get('userUri')) ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('recoverUserData', 'user/recover/' . Session::get('passwordUri'));
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$userRecover = $this->model('UserRecover', 'User');
 
 			$errors = $userRecover->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $userRecover->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('user/recover/' . Session::get('userUri'));
-			else:
-				if ( $userRecover->getIdentifier() ):
-					if ( !$userRecover->checkEmail() ):
+			} else {
+				if ( $userRecover->getIdentifier() ) {
+					if ( !$userRecover->checkEmail() ) {
 						Flash::danger(Config::message('message.user.recover.invalid'));
 
 						return $this->redirect('user/recover/' . Session::get('userUri'));
-					else:
-						if ( $userRecover->unblockUser() ):
+					} else {
+						if ( $userRecover->unblockUser() ) {
 							Session::delete('userUri');
 							Flash::success(Config::message('message.user.recover.success'));
 
 							return $this->redirect('login');
-						else:
+						} else {
 							Flash::danger(Config::message('message.system.error'));
 
 							return $this->redirect('user/recover/' . Session::get('userUri'));
-						endif;
-					endif;
-				endif;
-			endif;
-		endif;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -220,13 +220,13 @@ class UserController extends MainController
 	 */
 	public function updateAction($username = null)
 	{
-		if ( Session::exists(Config::get('session.user')) ):
-			if ( $username === Session::get(Config::get('session.user'))['username'] ):
+		if ( Session::exists(Config::get('session.user')) ) {
+			if ( $username === Session::get(Config::get('session.user'))['username'] ) {
 				$update = $this->model('UserUpdate', 'User');
 
 				return $this->view($this->getTemplate(), $update->getData());
-			endif;
-		endif;
+			}
+		}
 
 		return $this->redirect(404);
 	}
@@ -240,33 +240,33 @@ class UserController extends MainController
 	{
 		$username = Session::get(Config::get('session.user'))['username'];
 
-		if ( !Http::checkReferer('user/update/' . $username) ):
+		if ( !Http::checkReferer('user/update/' . $username) ) {
 			return $this->redirect(404);
-		endif;
+		}
 
 		$verifyToken = Csrf::check('updateUserData', 'user/update/' . $username);
 
-		if ( $verifyToken ):
+		if ( $verifyToken ) {
 			$userUpdate = $this->model('UserUpdate', 'User');
 
 			$errors = $userUpdate->getData()['validate'];
 
-			if ( !empty($errors) ):
+			if ( !empty($errors) ) {
 				$message = $userUpdate->getData()['messages'];
 				Flash::danger($message);
 
 				return $this->redirect('user/update/' . $username);
-			else:
-				if ( $userUpdate->update() ):
+			} else {
+				if ( $userUpdate->update() ) {
 					Flash::success(Config::message('message.user.update.success'));
 
 					return $this->redirect('user/profile/' . $username);
-				else:
+				} else {
 					Flash::danger(Config::message('message.system.error'));
 
 					return $this->redirect('user/update/' . $username);
-				endif;
-			endif;
-		endif;
+				}
+			}
+		}
 	}
 }

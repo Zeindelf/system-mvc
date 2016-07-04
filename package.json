@@ -10,10 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/zeindelf/system-mvc.git"
   },
-  "author" : {
-    "name" : "Wellington Barreto",
-    "email" : "zeindelf@hotmail.com",
-    "url" : "http://system.zeindelf.com/"
+  "author": {
+    "name": "Wellington Barreto",
+    "email": "zeindelf@hotmail.com",
+    "url": "http://system.zeindelf.com/"
   },
   "license": "MIT",
   "bugs": {
@@ -26,8 +26,10 @@
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-htmlmin": "^2.0.0",
+    "gulp-if": "^2.0.1",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^1.5.4",
-    "run-sequence": "^1.2.1"
+    "run-sequence": "^1.2.1",
+    "yargs": "^4.7.1"
   }
 }

@@ -7,6 +7,8 @@ var prefixer    = require('gulp-autoprefixer');
 var sass        = require('gulp-sass');
 var runSequence = require('run-sequence');
 var uglify      = require('gulp-uglify');
+var notify      = require("gulp-notify");
+var plumber     = require('gulp-plumber');
 
 /**
  * Compila arquivos para produção com a flag --prod
@@ -19,28 +21,37 @@ var args = require('yargs')
  * Limpa diretórios de produção
  */
 gulp.task('clean', function() {
-	return gulp.src(['./public/assets/', './storage/smarty/templates'])
+	var src = [
+		'./public/assets/',
+		'./storage/smarty/templates'
+	];
+
+	return gulp.src(src)
 	.pipe(clean());
 });
 
 /**
  * Minifica e concatena arquivos Javascript
  */
-gulp.task('jsMin', function() {
-	return gulp.src([
+gulp.task('scripts', function() {
+	var src = [
 		'./bower_components/jquery/dist/jquery.js',
 		'./bower_components/jquery.maskedinput/dist/jquery.maskedinput.js',
 		'./resources/assets/js/*.js'
-	])
+	];
+
+	return gulp.src(src)
+	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
 	.pipe(gulpIf(args.prod, uglify()))
 	.pipe(concat('app.js'))
+	.pipe(notify("Found file: <%= file.relative %>!"))
 	.pipe(gulp.dest('./public/assets/js/'));
 });
 
 /**
  * Minifica os templates HTML
  */
-gulp.task('htmlMin', function() {
+gulp.task('html', function() {
 	return gulp.src('./resources/views/templates/**/*.tpl')
 	.pipe(gulpIf(args.prod, htmlMin({
 		collapseWhitespace: true,
@@ -53,14 +64,16 @@ gulp.task('htmlMin', function() {
 /**
  * Compila os arquivos SASS
  */
-gulp.task('cssMin', function () {
+gulp.task('styles', function () {
 	return gulp.src('./resources/assets/scss/*.scss')
+	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
 	.pipe(sass({
 		outputStyle: 'compressed'
 	}))
 	.pipe(prefixer({
 		versions: ['last 2 browsers']
 	}))
+	.pipe(notify("Found file: <%= file.relative %>!"))
 	.pipe(gulp.dest('./public/assets/css'));
 });
 
@@ -72,22 +85,31 @@ gulp.task('cssMin', function () {
 /**
  * SASS Watch
  */
-gulp.task('watchCss', function() {
-	return gulp.watch('./resources/assets/scss/**/*.scss', ['cssMin']);
+gulp.task('watchStyles', function() {
+	return gulp.watch('./resources/assets/scss/**/*.scss', ['styles'])
+		.on('change', function(event) {
+			console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+		});
 });
 
 /**
  * JS Watch
  */
-gulp.task('watchJs', function() {
-	return gulp.watch('./resources/assets/js/*.js', ['jsMin']);
+gulp.task('watchScripts', function() {
+	return gulp.watch('./resources/assets/js/*.js', ['scripts'])
+		.on('change', function(event) {
+			console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+		});
 });
 
 /**
  * HTML Watch
  */
 gulp.task('watchHtml', function() {
-	return gulp.watch('./resources/views/templates/**/*.tpl', ['htmlMin']);
+	return gulp.watch('./resources/views/templates/**/*.tpl', ['html'])
+		.on('change', function(event) {
+			console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+		});
 });
 
 
@@ -99,12 +121,12 @@ gulp.task('watchHtml', function() {
  * Roda todas as tasks principais
  */
 gulp.task('default', function(callback) {
-	return runSequence('clean', ['cssMin', 'jsMin', 'htmlMin'], callback);
+	return runSequence('clean', ['styles', 'scripts', 'html'], callback);
 });
 
 /**
  * Watch tasks
  */
 gulp.task('watch', function(callback) {
-	return runSequence('watchCss', 'watchJs', 'watchHtml', callback);
+	return runSequence('watchStyles', 'watchScripts', 'watchHtml', callback);
 });

@@ -94,6 +94,8 @@ class LoginController extends MainController
 						if ( $login->activeVerify() ) {
 							Flash::success($login->getUserName());
 
+							$login->lastLogin();
+
 							return $this->redirect();
 						} else {
 							return $this->redirect('logout');
@@ -101,6 +103,8 @@ class LoginController extends MainController
 					}
 
 					Flash::success($login->getUserName());
+
+					$login->lastLogin();
 
 					return $this->redirect();
 				}

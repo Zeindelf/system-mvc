@@ -38,6 +38,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(60) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   `active_hash` varchar(128) DEFAULT NULL,
+  `last_login` timestamp DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

@@ -267,6 +267,21 @@ class LoginModel extends MainModel
 		}
 	}
 
+	/**
+	 * Registra data e hora do último login do usuário
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function lastLogin()
+	{
+		$userId = $this->user['id'];
+		$now = date('Y-m-d H:i:s');
+
+		$updateUser = $this->newUpdate();
+		$updateUser->executeUpdate('users', ['last_login' => $now], 'WHERE id = :id', "id={$userId}");
+	}
+
 	//------------------------------------------------------------
 	//	PRIVATE METHODS
 	//------------------------------------------------------------
